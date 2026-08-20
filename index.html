@@ -298,26 +298,82 @@
     </div>
   </section>
 
-  <!-- ADICIONAR LIVRO -->
-  <section id="adicionar-livro" class="section-alt">
-    <div class="container">
-      <span class="eyebrow center" style="display:block;text-align:center">Painel do autor</span>
-      <h2 class="section-title center" style="text-align:center">Adicionar Livro</h2>
-      <p class="section-sub center" style="text-align:center;margin-bottom:48px">Preenche os campos abaixo para publicar um novo livro no site.</p>
-      <form id="livroForm" class="contact-form" style="max-width:520px;margin:0 auto;">
+  <!-- ÁREA RESTRITA AO AUTOR -->
+<section id="area-autor" class="section-alt">
+  <div class="container">
+
+    <span class="eyebrow center" style="display:block;text-align:center">
+      Área restrita ao autor
+    </span>
+
+    <h2 class="section-title center" style="text-align:center">
+      Acesso do Autor
+    </h2>
+
+    <p class="section-sub center" style="text-align:center;margin-bottom:48px">
+      Área exclusiva para gestão e publicação dos livros.
+    </p>
+
+    <!-- LOGIN -->
+    <div id="autorLoginBox" style="max-width:520px;margin:0 auto;">
+
+      <form id="autorLoginForm" class="contact-form">
+
+        <label for="autorEmail">E-mail</label>
+        <input type="email" id="autorEmail" autocomplete="email" required>
+
+        <label for="autorPassword">Palavra-passe</label>
+        <input type="password" id="autorPassword" autocomplete="current-password" required>
+
+        <button type="submit" class="btn btn-dark">
+          Entrar
+        </button>
+
+        <p id="autorLoginFeedback" class="form-feedback"></p>
+
+      </form>
+
+    </div>
+
+    <!-- PAINEL DO AUTOR -->
+    <div id="autorPanel" style="display:none;max-width:520px;margin:0 auto;">
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;">
+
+        <strong>Gestão de Livros</strong>
+
+        <button id="autorLogout" type="button" class="btn btn-outline-ink">
+          Sair
+        </button>
+
+      </div>
+
+      <form id="livroForm" class="contact-form">
+
         <label for="livroTitulo">Título</label>
         <input type="text" id="livroTitulo" required>
+
         <label for="livroSubtitulo">Subtítulo (opcional)</label>
         <input type="text" id="livroSubtitulo">
+
         <label for="livroSinopse">Sinopse</label>
         <textarea id="livroSinopse" rows="4"></textarea>
-        <label for="livroPdfUrl">Link do PDF (opcional por agora)</label>
-        <input type="text" id="livroPdfUrl" placeholder="https://...">
-        <button type="submit" class="btn btn-dark">Publicar Livro</button>
+
+        <label for="livroPdfUrl">Link do PDF</label>
+        <input type="url" id="livroPdfUrl" placeholder="https://...">
+
+        <button type="submit" class="btn btn-dark">
+          Publicar Livro
+        </button>
+
         <p id="livroFeedback" class="form-feedback"></p>
+
       </form>
+
     </div>
-  </section>
+
+  </div>
+</section>
 
   <!-- ESCRITOS -->
   <section id="escritos">
@@ -512,14 +568,17 @@
     }
   });
 </script>
-
-<!-- LIGAÇÃO AO SUPABASE -->
+<!-- LIGAÇÃO AO SUPABASE + ÁREA RESTRITA DO AUTOR -->
 <script type="module">
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
   const SUPABASE_URL = 'https://uxvtewwealwtntnbyjyh.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_l79iQtPWsFQG2GKygQ7-dg_Wy2xQot6';
   const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  /* =========================
+     LIVROS PÚBLICOS
+  ========================= */
 
   const grid = document.getElementById('livrosSupabaseGrid');
 
@@ -530,72 +589,282 @@
       .order('created_at', { ascending: false });
 
     if (error) {
-      grid.innerHTML = '<p style="color:var(--ink-soft);text-align:center;grid-column:1/-1">Não foi possível carregar os livros agora.</p>';
+      grid.innerHTML =
+        '<p style="color:var(--ink-soft);text-align:center;grid-column:1/-1">Não foi possível carregar os livros agora.</p>';
       console.error(error);
       return;
     }
 
     if (!data || data.length === 0) {
-      grid.innerHTML = '<p style="color:var(--ink-soft);text-align:center;grid-column:1/-1">Ainda não há livros adicionados aqui.</p>';
+      grid.innerHTML =
+        '<p style="color:var(--ink-soft);text-align:center;grid-column:1/-1">Ainda não há livros adicionados aqui.</p>';
       return;
     }
 
     grid.innerHTML = data.map(livro => `
       <article class="book-item">
+
         <div class="book-cover-3d">
-          <div class="cover-face" style="background:linear-gradient(160deg,var(--ink-soft),var(--charcoal))">
-            <span class="cover-title" style="font-size:1rem">${livro.titulo || 'Sem título'}</span>
-            ${livro.subtitulo ? `<span class="cover-sub">${livro.subtitulo}</span>` : ''}
-            <span class="cover-mark">Vida & Escritos</span>
+          <div
+            class="cover-face"
+            style="background:linear-gradient(160deg,var(--ink-soft),var(--charcoal))">
+
+            <span class="cover-title" style="font-size:1rem">
+              ${livro.titulo || 'Sem título'}
+            </span>
+
+            ${livro.subtitulo
+              ? `<span class="cover-sub">${livro.subtitulo}</span>`
+              : ''}
+
+            <span class="cover-mark">
+              Vida & Escritos
+            </span>
+
           </div>
         </div>
+
         <h3>${livro.titulo || 'Sem título'}</h3>
-        ${livro.subtitulo ? `<p class="book-subtitle">${livro.subtitulo}</p>` : ''}
-        ${livro.sinopse ? `<p class="book-desc">${livro.sinopse}</p>` : ''}
+
+        ${livro.subtitulo
+          ? `<p class="book-subtitle">${livro.subtitulo}</p>`
+          : ''}
+
+        ${livro.sinopse
+          ? `<p class="book-desc">${livro.sinopse}</p>`
+          : ''}
+
         <div class="book-actions">
-          ${livro.pdfurl ? `<a href="${livro.pdfurl}" target="_blank" class="btn btn-outline-ink">Ler</a>
-          <a href="${livro.pdfurl}" download class="btn btn-dark">Baixar</a>` : '<span style="color:var(--ink-soft);font-size:.85rem;">PDF em breve</span>'}
+
+          ${livro.pdfurl
+            ? `
+              <a
+                href="${livro.pdfurl}"
+                target="_blank"
+                class="btn btn-outline-ink">
+                Ler
+              </a>
+
+              <a
+                href="${livro.pdfurl}"
+                download
+                class="btn btn-dark">
+                Baixar
+              </a>
+            `
+            : `
+              <span style="color:var(--ink-soft);font-size:.85rem;">
+                PDF em breve
+              </span>
+            `
+          }
+
         </div>
+
       </article>
     `).join('');
   }
 
   carregarLivros();
 
+
+  /* =========================
+     ÁREA RESTRITA AO AUTOR
+  ========================= */
+
+  const loginBox = document.getElementById('autorLoginBox');
+  const loginForm = document.getElementById('autorLoginForm');
+  const loginFeedback = document.getElementById('autorLoginFeedback');
+
+  const autorPanel = document.getElementById('autorPanel');
+  const logoutButton = document.getElementById('autorLogout');
+
+
+  function mostrarAreaAutor(session) {
+
+    if (session) {
+      loginBox.style.display = 'none';
+      autorPanel.style.display = 'block';
+    } else {
+      loginBox.style.display = 'block';
+      autorPanel.style.display = 'none';
+    }
+
+  }
+
+
+  /* VERIFICAR SESSÃO */
+
+  async function verificarSessao() {
+
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+
+    mostrarAreaAutor(session);
+
+  }
+
+  verificarSessao();
+
+
+  /* =========================
+     LOGIN
+  ========================= */
+
+  loginForm.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+
+    loginFeedback.textContent = 'A verificar acesso...';
+    loginFeedback.style.color = '';
+
+    const email =
+      document.getElementById('autorEmail').value.trim();
+
+    const password =
+      document.getElementById('autorPassword').value;
+
+
+    const { error } =
+      await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+
+    if (error) {
+
+      loginFeedback.textContent =
+        'E-mail ou palavra-passe incorretos.';
+
+      loginFeedback.style.color = '#a03d3d';
+
+      console.error(error);
+
+      return;
+    }
+
+
+    loginFeedback.textContent = '';
+
+    loginForm.reset();
+
+    verificarSessao();
+
+  });
+
+
+  /* =========================
+     SAIR
+  ========================= */
+
+  logoutButton.addEventListener('click', async () => {
+
+    await supabase.auth.signOut();
+
+    mostrarAreaAutor(null);
+
+  });
+
+
+  /* DETECTAR ALTERAÇÕES DE LOGIN */
+
+  supabase.auth.onAuthStateChange((_event, session) => {
+
+    mostrarAreaAutor(session);
+
+  });
+
+
+  /* =========================
+     PUBLICAR LIVRO
+  ========================= */
+
   const livroForm = document.getElementById('livroForm');
   const livroFeedback = document.getElementById('livroFeedback');
 
+
   livroForm.addEventListener('submit', async (e) => {
+
     e.preventDefault();
 
-    const titulo = document.getElementById('livroTitulo').value.trim();
-    const subtitulo = document.getElementById('livroSubtitulo').value.trim();
-    const sinopse = document.getElementById('livroSinopse').value.trim();
-    const pdfurl = document.getElementById('livroPdfUrl').value.trim();
+
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+
+
+    if (!session) {
+
+      livroFeedback.textContent =
+        'É necessário entrar como autor para publicar.';
+
+      livroFeedback.style.color = '#a03d3d';
+
+      return;
+    }
+
+
+    const titulo =
+      document.getElementById('livroTitulo').value.trim();
+
+    const subtitulo =
+      document.getElementById('livroSubtitulo').value.trim();
+
+    const sinopse =
+      document.getElementById('livroSinopse').value.trim();
+
+    const pdfurl =
+      document.getElementById('livroPdfUrl').value.trim();
+
 
     if (!titulo) {
-      livroFeedback.textContent = 'O título é obrigatório.';
+
+      livroFeedback.textContent =
+        'O título é obrigatório.';
+
       livroFeedback.style.color = '#a03d3d';
+
       return;
     }
 
-    const { error } = await supabase
-      .from('livros')
-      .insert([{ titulo, subtitulo, sinopse, pdfurl }]);
+
+    const { error } =
+      await supabase
+        .from('livros')
+        .insert([
+          {
+            titulo,
+            subtitulo,
+            sinopse,
+            pdfurl
+          }
+        ]);
+
 
     if (error) {
-      livroFeedback.textContent = 'Erro ao publicar. Verifica se a política de escrita está criada no Supabase.';
+
+      livroFeedback.textContent =
+        'Erro ao publicar. Verifica as políticas da tabela livros no Supabase.';
+
       livroFeedback.style.color = '#a03d3d';
+
       console.error(error);
+
       return;
     }
 
-    livroFeedback.textContent = `"${titulo}" foi publicado com sucesso!`;
-    livroFeedback.style.color = '';
-    livroForm.reset();
-    carregarLivros();
-  });
-</script>
 
-</body>
-</html>
+    livroFeedback.textContent =
+      `"${titulo}" foi publicado com sucesso!`;
+
+    livroFeedback.style.color = '';
+
+    livroForm.reset();
+
+    carregarLivros();
+
+  });
+
+</script>
