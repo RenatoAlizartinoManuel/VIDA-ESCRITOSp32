@@ -464,100 +464,206 @@ footer{background:var(--fundo-quente-2);border-top:1px solid var(--linha);text-a
   </div>
 </section>
 
-<!-- ============================================ -->
-<!-- ===== PAINEL ADMINISTRATIVO (NOVO) ===== -->
-<!-- ============================================ -->
-<section id="admin" class="admin-section">
-  <div id="loginBox">
-    <span class="eyebrow">Acesso restrito · Painel do autor</span>
-    <h2 style="font-size:1.7rem;margin-bottom:24px;">Entrar no painel</h2>
-    <form class="form" id="loginForm">
-      <label for="loginEmail">Email</label>
-      <input type="email" id="loginEmail" required>
-      <label for="loginSenha">Palavra-passe</label>
-      <input type="password" id="loginSenha" required>
-      <button type="submit" class="btn btn-vermelho">Entrar</button>
-      <p id="loginFeedback" class="feedback"></p>
-    </form>
-  </div>
+<script type="module">
+// ===== PAINEL ADMINISTRATIVO - SUPABASE =====
+try {
+  const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
 
-  <div id="painelBox" style="display:none;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;">
-      <h2 style="font-size:1.5rem;">Painel do Autor</h2>
-      <button id="logoutBtn" class="btn-sair">Sair</button>
-    </div>
+  const SUPABASE_URL = 'https://uxvtewwealwtntnbyjyh.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_l79iQtPWsFQG2GKygQ7-dg_Wy2xQot6';
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    <h3 style="font-size:1.15rem;margin-bottom:16px;">📚 Publicar Livro</h3>
-    <form class="form" id="livroForm">
-      <label for="lTitulo">Título *</label>
-      <input type="text" id="lTitulo" required>
-      <label for="lSubtitulo">Subtítulo</label>
-      <input type="text" id="lSubtitulo">
-      <label for="lAno">Ano de publicação</label>
-      <input type="text" id="lAno" placeholder="2026">
-      <label for="lGenero">Género</label>
-      <input type="text" id="lGenero" placeholder="Poesia, Ficção, Ensaio...">
-      <label for="lSinopse">Sinopse</label>
-      <textarea id="lSinopse" rows="3"></textarea>
-      <label for="lCapa">Link da capa (imagem, opcional)</label>
-      <input type="text" id="lCapa" placeholder="https://...jpg">
-      <label for="lPdf">Link do PDF *</label>
-      <input type="text" id="lPdf" placeholder="https://...pdf" required>
-      <button type="submit" class="btn btn-vermelho">Publicar Livro</button>
-      <p id="livroFeedback" class="feedback"></p>
-    </form>
+  function gerarId(t) {
+    return t.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '') + '-' + Date.now().toString(36);
+  }
 
-    <h3 style="font-size:1.05rem;margin:36px 0 14px;">Livros publicados</h3>
-    <div id="listaLivros">
-      <p style="font-size:.9rem;color:var(--cinza-suave);">A carregar...</p>
-    </div>
+  async function carregarListasAdmin() {
+    const listaL = document.getElementById('listaLivros');
+    const listaA = document.getElementById('listaArtigos');
+    if (!listaL || !listaA) return;
 
-    <h3 style="font-size:1.15rem;margin:52px 0 16px;">✍️ Publicar Artigo</h3>
-    <form class="form" id="artigoForm">
-      <label for="aTitulo">Título *</label>
-      <input type="text" id="aTitulo" required>
-      <label for="aSubtitulo">Subtítulo</label>
-      <input type="text" id="aSubtitulo">
-      <label for="aResumo">Resumo</label>
-      <textarea id="aResumo" rows="3"></textarea>
-      <label for="aPdf">Link do PDF *</label>
-      <input type="text" id="aPdf" placeholder="https://...pdf" required>
-      <button type="submit" class="btn btn-vermelho">Publicar Artigo</button>
-      <p id="artigoFeedback" class="feedback"></p>
-    </form>
+    const { data: livros, error: eL } = await supabase.from('livros').select('*').order('created_at', { ascending: false });
+    if (eL) console.error('Erro ao carregar livros:', eL);
+    
+    listaL.innerHTML = !livros || livros.length === 0
+      ? '<p style="font-size:.9rem;color:var(--cinza-suave);">Ainda não publicaste nenhum livro.</p>'
+      : livros.map(l => `
+        <div class="item-lista">
+          <span style="font-size:.9rem;">${l.titulo}${l.ano ? ' · ' + l.ano : ''}</span>
+          <button class="btn-eliminar" onclick="eliminarLivro('${l.id}')">Eliminar</button>
+        </div>
+      `).join('');
 
-    <h3 style="font-size:1.05rem;margin:36px 0 14px;">Artigos publicados</h3>
-    <div id="listaArtigos">
-      <p style="font-size:.9rem;color:var(--cinza-suave);">A carregar...</p>
-    </div>
-  </div>
-</section>
-</main>
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-box">
-    <button class="modal-fechar" id="modalFechar" aria-label="Fechar">&times;</button>
-    <div id="modalConteudo"></div>
-  </div>
-</div>
-<footer>
-  <div class="container">
-    <p class="footer-logo">Vida & Escritos</p>
-    <p style="color:var(--cinza-suave)">Poeta e Escritor</p>
-    <ul class="footer-nav">
-      <li><a href="#inicio">Início</a></li>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#biblioteca">Biblioteca</a></li>
-      <li><a href="#artigos">Artigos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    <ul class="footer-social">
-      <li><a href="#" target="_blank" rel="noopener">WhatsApp</a></li>
-      <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
-      <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
-    </ul>
-    <p class="copyright">© 2026 Renato Nhachengo — Todos os direitos reservados.</p>
-  </div>
-</footer>
+    const { data: artigos, error: eA } = await supabase.from('artigos').select('*').order('created_at', { ascending: false });
+    if (eA) console.error('Erro ao carregar artigos:', eA);
+    
+    listaA.innerHTML = !artigos || artigos.length === 0
+      ? '<p style="font-size:.9rem;color:var(--cinza-suave);">Ainda não publicaste nenhum artigo.</p>'
+      : artigos.map(a => `
+        <div class="item-lista">
+          <span style="font-size:.9rem;">${a.titulo}</span>
+          <button class="btn-eliminar" onclick="eliminarArtigo('${a.id}')">Eliminar</button>
+        </div>
+      `).join('');
+  }
+
+  window.eliminarLivro = async function(id) {
+    if (!confirm('Eliminar este livro definitivamente?')) return;
+    const { error } = await supabase.from('livros').delete().eq('id', id);
+    if (error) { alert('Erro ao eliminar. Confirma que estás autenticado.'); console.error(error); return; }
+    carregarListasAdmin();
+  };
+
+  window.eliminarArtigo = async function(id) {
+    if (!confirm('Eliminar este artigo definitivamente?')) return;
+    const { error } = await supabase.from('artigos').delete().eq('id', id);
+    if (error) { alert('Erro ao eliminar. Confirma que estás autenticado.'); console.error(error); return; }
+    carregarListasAdmin();
+  };
+
+  function configurarAdmin() {
+    const loginBox = document.getElementById('loginBox');
+    const painelBox = document.getElementById('painelBox');
+    const loginForm = document.getElementById('loginForm');
+    const loginFeedback = document.getElementById('loginFeedback');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    async function verificarEstado() {
+      const { data: { session } } = await supabase.auth.getSession();
+      loginBox.style.display = session ? 'none' : 'block';
+      painelBox.style.display = session ? 'block' : 'none';
+      if (session) carregarListasAdmin();
+    }
+    verificarEstado();
+
+    // ===== LOGIN COM AUTO-CRIAÇÃO DE CONTA =====
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const senha = document.getElementById('loginSenha').value;
+      
+      if (!email || !senha) {
+        loginFeedback.textContent = 'Preencha email e palavra-passe.';
+        return;
+      }
+
+      loginFeedback.textContent = 'A tentar entrar...';
+      loginFeedback.style.color = 'var(--dourado-suave)';
+
+      // Tenta fazer login
+      const { data, error } = await supabase.auth.signInWithPassword({ 
+        email, 
+        password: senha 
+      });
+
+      if (error) {
+        // Se falhar, tenta criar conta
+        loginFeedback.textContent = 'A criar conta...';
+        const { error: signUpError } = await supabase.auth.signUp({
+          email: email,
+          password: senha,
+        });
+
+        if (signUpError) {
+          loginFeedback.textContent = '❌ ' + signUpError.message;
+          loginFeedback.style.color = 'var(--vermelho-poetico)';
+          console.error('Erro ao criar conta:', signUpError);
+          return;
+        }
+
+        loginFeedback.textContent = '✅ Conta criada! Faça login novamente.';
+        loginFeedback.style.color = 'var(--dourado-suave)';
+        return;
+      }
+
+      loginFeedback.textContent = '✅ Login feito com sucesso!';
+      loginFeedback.style.color = 'var(--dourado-suave)';
+      setTimeout(() => {
+        loginFeedback.textContent = '';
+        verificarEstado();
+      }, 1000);
+    });
+
+    logoutBtn.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      verificarEstado();
+    });
+
+    // ===== PUBLICAR LIVRO =====
+    document.getElementById('livroForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const titulo = document.getElementById('lTitulo').value.trim();
+      const pdf = document.getElementById('lPdf').value.trim();
+      const fb = document.getElementById('livroFeedback');
+      if (!titulo || !pdf) { fb.textContent = 'Título e link do PDF são obrigatórios.'; return; }
+      
+      const { error } = await supabase.from('livros').insert([{
+        id: gerarId(titulo),
+        titulo,
+        subtitulo: document.getElementById('lSubtitulo').value.trim(),
+        ano: document.getElementById('lAno').value.trim(),
+        genero: document.getElementById('lGenero').value.trim(),
+        sinopse: document.getElementById('lSinopse').value.trim(),
+        capaurl: document.getElementById('lCapa').value.trim(),
+        pdfurl: pdf
+      }]);
+      
+      if (error) { 
+        fb.textContent = '❌ Erro ao publicar: ' + error.message;
+        fb.className = 'feedback';
+        console.error(error); 
+        return; 
+      }
+      fb.className = 'feedback feedback-sucesso';
+      fb.textContent = `✅ "${titulo}" foi publicado com sucesso!`;
+      e.target.reset();
+      carregarListasAdmin();
+    });
+
+    // ===== PUBLICAR ARTIGO =====
+    document.getElementById('artigoForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const titulo = document.getElementById('aTitulo').value.trim();
+      const pdf = document.getElementById('aPdf').value.trim();
+      const fb = document.getElementById('artigoFeedback');
+      if (!titulo || !pdf) { fb.textContent = 'Título e link do PDF são obrigatórios.'; return; }
+      
+      const { error } = await supabase.from('artigos').insert([{
+        id: gerarId(titulo),
+        titulo,
+        subtitulo: document.getElementById('aSubtitulo').value.trim(),
+        resumo: document.getElementById('aResumo').value.trim(),
+        pdfurl: pdf
+      }]);
+      
+      if (error) { 
+        fb.textContent = '❌ Erro ao publicar: ' + error.message;
+        fb.className = 'feedback';
+        console.error(error); 
+        return; 
+      }
+      fb.className = 'feedback feedback-sucesso';
+      fb.textContent = `✅ "${titulo}" foi publicado com sucesso!`;
+      e.target.reset();
+      carregarListasAdmin();
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', configurarAdmin);
+
+} catch (err) {
+  console.error('Erro ao ligar ao Supabase:', err);
+  document.addEventListener('DOMContentLoaded', () => {
+    const listaL = document.getElementById('listaLivros');
+    const listaA = document.getElementById('listaArtigos');
+    if (listaL) listaL.innerHTML = '<p style="font-size:.9rem;color:var(--cinza-suave);">⚠️ Não foi possível ligar à base de dados.</p>';
+    if (listaA) listaA.innerHTML = '<p style="font-size:.9rem;color:var(--cinza-suave);">⚠️ Não foi possível ligar à base de dados.</p>';
+  });
+}
+</script>
 
 <script>
 // ===== NÚCLEO DO SITE (não depende de internet externa) =====
