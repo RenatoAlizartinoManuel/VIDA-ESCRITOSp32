@@ -3,425 +3,455 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vida & Escritos | Renato Alizartino Manuel</title>
+<title>Vida & Escritos | Renato Nhachengo</title>
 <meta name="description" content="Vida & Escritos — Poeta e Escritor. Palavras que encontram significado entre a vida e o silêncio.">
-<link rel="preload" as="image" href="https://images.unsplash.com/photo-1635409565052-65ff2fcd0eea?q=70&w=1600&auto=format&fit=crop">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper:#f7f3ea; --paper-2:#efe7d6; --paper-3:#e8dfc9;
-    --ink:#231f19; --ink-2:#4a4237; --ink-soft:#6f6656;
-    --line:rgba(35,31,25,.14);
-    --accent:#8a6a45;
-    --navy:#2b3446; --burgundy:#5c2a2e; --forest:#2f3d31; --charcoal:#2a2723;
-    --title:'Playfair Display',serif; --body:'Lora',serif; --ui:'Inter',sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--paper);color:var(--ink-2);font-family:var(--body);font-weight:400;line-height:1.75;font-size:1.04rem}
-  h1,h2,h3{font-family:var(--title);font-weight:600;color:var(--ink);letter-spacing:.2px}
-  a{color:var(--ink);text-decoration:none}
-  .container{max-width:1140px;margin:0 auto;padding:0 24px}
+/* ===== VIDA & ESCRITOS — ESTILOS PRINCIPAIS ===== */
+:root{
+  --preto-literario:#1a1a1a;
+  --cinza-poetico:#2d2d2d;
+  --cinza-suave:#7f8c8d;
+  --fundo-quente:#faf8f5;
+  --fundo-quente-2:#f1ece1;
+  --vermelho-poetico:#b03a2e;
+  --dourado-suave:#c9a96e;
+  --azul-noturno:#2c3e50;
+  --linha:rgba(26,26,26,.12);
+  --font-titulo:'Playfair Display',serif;
+  --font-texto:'Lora',serif;
+  --font-citacao:'Crimson Text',serif;
+}
+[data-theme="dark"]{
+  --fundo-quente:var(--azul-noturno);
+  --fundo-quente-2:#25333f;
+  --preto-literario:#f5f1e8;
+  --cinza-poetico:#dcd6c8;
+  --cinza-suave:#a9b6bf;
+  --linha:rgba(245,241,232,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--fundo-quente);color:var(--cinza-poetico);font-family:var(--font-texto);
+  font-size:1.125rem;line-height:1.75;transition:background .4s ease,color .4s ease}
+h1,h2,h3{font-family:var(--font-titulo);color:var(--preto-literario);font-weight:600}
+h1{font-size:3rem}
+h2{font-size:2.2rem}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+.eyebrow{display:block;font-family:var(--font-texto);text-transform:uppercase;letter-spacing:3px;
+  font-size:.75rem;color:var(--dourado-suave);margin-bottom:14px}
+.center{text-align:center}
+section{padding:100px 0}
+.section-alt{background:var(--fundo-quente-2)}
 
-  /* SCROLL REVEAL */
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
-  .reveal.visible{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
-  /* HEADER */
-  header{position:sticky;top:0;z-index:100;background:rgba(247,243,234,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;max-width:1140px;margin:0 auto}
-  .logo{font-family:var(--title);font-size:1.15rem;letter-spacing:2px;color:var(--ink);text-transform:uppercase}
-  .nav-links{display:flex;list-style:none;gap:36px;font-family:var(--ui)}
-  .nav-links a{color:var(--ink-soft);font-size:.78rem;text-transform:uppercase;letter-spacing:2px;padding-bottom:4px;border-bottom:1px solid transparent;transition:.3s}
-  .nav-links a:hover{color:var(--ink);border-bottom-color:var(--accent)}
-  .menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
-  .menu-toggle span{width:24px;height:1.5px;background:var(--ink)}
+/* HEADER / NAV */
+header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--fundo-quente) 92%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;max-width:1140px;margin:0 auto}
+.logo{font-family:var(--font-titulo);font-size:1.15rem;letter-spacing:1.5px;color:var(--preto-literario);text-transform:uppercase}
+.nav-links{display:flex;list-style:none;gap:28px;align-items:center}
+.nav-links a{font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--cinza-suave);
+  padding-bottom:4px;border-bottom:1px solid transparent;transition:.3s}
+.nav-links a:hover,.nav-links a.ativo{color:var(--vermelho-poetico);border-bottom-color:var(--vermelho-poetico)}
+.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+.menu-toggle span{width:24px;height:1.5px;background:var(--preto-literario)}
+.theme-toggle{background:none;border:1px solid var(--linha);border-radius:50%;width:38px;height:38px;
+  cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;color:var(--preto-literario)}
 
-  /* HERO */
-  .hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-  .hero-bg{position:absolute;inset:0;background-color:#2a251d;
-    background:url('https://images.unsplash.com/photo-1635409565052-65ff2fcd0eea?q=70&w=1600&auto=format&fit=crop') center 40%/cover no-repeat, #2a251d;
-    background-attachment:scroll}
-  @media(hover:hover) and (pointer:fine){.hero-bg{background-attachment:fixed}}
-  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,31,25,.35),rgba(35,31,25,.62) 55%,rgba(35,31,25,.78))}
-  .hero-content{position:relative;z-index:2;color:var(--paper);padding:24px}
-  .hero-eyebrow{font-family:var(--ui);text-transform:uppercase;letter-spacing:4px;font-size:.78rem;color:#e4d9bd;margin-bottom:22px;opacity:0;animation:fadeUp 1s ease .2s forwards}
-  .hero h1{font-size:clamp(2.6rem,7vw,4.6rem);letter-spacing:6px;font-weight:600;margin-bottom:18px;opacity:0;animation:fadeUp 1.1s ease .4s forwards}
-  .hero .role{font-family:var(--ui);text-transform:uppercase;letter-spacing:3px;font-size:.85rem;color:#e4d9bd;margin-bottom:30px;opacity:0;animation:fadeUp 1.1s ease .6s forwards}
-  .hero .quote{font-family:var(--title);font-style:italic;font-weight:500;font-size:1.35rem;max-width:620px;margin:0 auto 46px;line-height:1.6;opacity:0;animation:fadeUp 1.1s ease .8s forwards}
-  .hero-actions{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 1.1s ease 1s forwards}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-  @media(prefers-reduced-motion:reduce){.hero-eyebrow,.hero h1,.hero .role,.hero .quote,.hero-actions{animation:none;opacity:1}}
+/* BOTÕES */
+.btn{display:inline-block;padding:14px 32px;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;
+  border:1px solid currentColor;cursor:pointer;transition:.3s;font-family:var(--font-texto)}
+.btn-vermelho{background:var(--vermelho-poetico);border-color:var(--vermelho-poetico);color:#fff}
+.btn-vermelho:hover{background:transparent;color:var(--vermelho-poetico)}
+.btn-outline{background:transparent;color:var(--preto-literario);border-color:var(--preto-literario)}
+.btn-outline:hover{background:var(--preto-literario);color:var(--fundo-quente)}
+.btn-dourado{background:transparent;color:var(--dourado-suave);border-color:var(--dourado-suave)}
+.btn-dourado:hover{background:var(--dourado-suave);color:var(--preto-literario)}
 
-  /* BUTTONS */
-  .btn{display:inline-block;padding:15px 34px;font-family:var(--ui);font-size:.78rem;letter-spacing:2px;text-transform:uppercase;
-    transition:.35s;cursor:pointer;border:1px solid currentColor}
-  .btn-solid{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-  .btn-solid:hover{background:transparent;color:var(--paper)}
-  .btn-line{background:transparent;color:var(--paper);border-color:rgba(247,243,234,.6)}
-  .btn-line:hover{border-color:var(--paper)}
-  .btn-dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .btn-dark:hover{background:transparent;color:var(--ink)}
-  .btn-outline-ink{background:transparent;color:var(--ink);border-color:var(--ink)}
-  .btn-outline-ink:hover{background:var(--ink);color:var(--paper)}
+/* HERO */
+.hero{min-height:82vh;display:flex;align-items:center;justify-content:center;text-align:center;
+  position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-color:#20211d;background-size:cover;background-position:center 42%}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,14,.4),rgba(20,18,14,.72) 60%,rgba(20,18,14,.85))}
+.hero-content{position:relative;z-index:2;color:#f5f1e8;padding:24px;max-width:720px}
+.hero .eyebrow{color:#e4d9bd}
+.hero h1{color:#f5f1e8;font-size:clamp(2.2rem,5.5vw,3.4rem);letter-spacing:1px;margin-bottom:18px}
+.hero .lead{font-family:var(--font-citacao);font-style:italic;font-size:1.3rem;margin-bottom:36px;line-height:1.6;color:#e9e3d3}
+.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 
-  /* SECTIONS */
-  section{padding:120px 0}
-  .section-alt{background:var(--paper-2)}
-  .eyebrow{display:block;font-family:var(--ui);text-transform:uppercase;letter-spacing:3px;font-size:.75rem;color:var(--accent);margin-bottom:16px}
-  .section-title{font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:20px}
-  .section-sub{color:var(--ink-soft);max-width:600px;font-style:italic;font-family:var(--title)}
-  .center{text-align:center;margin-left:auto;margin-right:auto}
+/* CARTÕES DE LIVRO / ARTIGO */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:48px}
+.livro-card{text-align:center}
+.capa{width:180px;height:260px;margin:0 auto 24px;position:relative;perspective:1100px}
+.capa-face{position:absolute;inset:0;border-radius:1px 6px 6px 1px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:24px 18px;text-align:center;color:#f5f1e8;
+  box-shadow:22px 16px 40px -12px rgba(0,0,0,.45);transform:rotateY(-18deg);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.capa:hover .capa-face{transform:rotateY(-6deg) translateY(-6px)}
+.capa-titulo{font-family:var(--font-titulo);font-size:1.1rem;font-weight:600;line-height:1.3}
+.capa-sub{font-family:var(--font-texto);font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;opacity:.75;margin-top:10px}
+.capa-marca{font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;opacity:.6;margin-top:auto;padding-top:16px}
+.livro-card h3{font-size:1.2rem;margin-bottom:6px}
+.livro-meta{font-size:.78rem;letter-spacing:1px;text-transform:uppercase;color:var(--dourado-suave);margin-bottom:10px}
+.livro-desc{color:var(--cinza-suave);font-style:italic;font-size:.92rem;margin-bottom:20px}
+.card-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-  /* SOBRE — editorial split */
-  .split{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:center}
-  .split-photo{aspect-ratio:4/5;background:url('https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1400&auto=format&fit=crop') center/cover no-repeat;
-    box-shadow:0 30px 60px -20px rgba(35,31,25,.35);position:relative}
-  .split-photo::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
-  .split-text h2{margin-bottom:26px;line-height:1.25}
-  .split-text p{color:var(--ink-soft);margin-bottom:18px;font-size:1.05rem}
-  .split-text .link-arrow{display:inline-block;margin-top:10px;font-family:var(--ui);font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:2px}
+.artigo-card{background:var(--fundo-quente);border:1px solid var(--linha);padding:32px;transition:.3s}
+.artigo-card:hover{border-color:var(--dourado-suave)}
+.artigo-card .data{font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--vermelho-poetico);margin-bottom:10px}
+.artigo-card h3{font-size:1.3rem;margin-bottom:10px}
+.artigo-card p{color:var(--cinza-suave);margin-bottom:16px}
+.tag{display:inline-block;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--cinza-suave);
+  border:1px solid var(--linha);padding:4px 10px;margin:0 6px 6px 0}
 
-  /* LIVROS — biblioteca digital com capas 3D */
-  .library-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:56px;margin-top:64px}
-  .book-item{text-align:center}
-  .book-cover-3d{width:190px;height:270px;margin:0 auto 30px;position:relative;perspective:1200px}
-  .cover-face{position:absolute;inset:0;border-radius:1px 6px 6px 1px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    padding:26px 20px;text-align:center;color:var(--paper);
-    box-shadow:26px 18px 46px -14px rgba(35,31,25,.5),0 2px 0 rgba(255,255,255,.06) inset;
-    transform:rotateY(-20deg);transition:transform .5s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
-  .book-cover-3d::before{content:'';position:absolute;left:-8px;top:2%;bottom:2%;width:9px;background:rgba(0,0,0,.35);
-    transform:rotateY(90deg);transform-origin:right;border-radius:2px 0 0 2px}
-  .book-cover-3d:hover .cover-face{transform:rotateY(-8deg) translateY(-8px)}
-  .cover-title{font-family:var(--title);font-size:1.15rem;font-weight:600;line-height:1.3}
-  .cover-sub{font-family:var(--ui);font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;opacity:.75;margin-top:10px}
-  .cover-mark{font-family:var(--ui);font-size:.65rem;letter-spacing:3px;text-transform:uppercase;opacity:.6;margin-top:auto;padding-top:18px}
-  .book-item h3{font-size:1.2rem;margin-bottom:6px}
-  .book-item .book-subtitle{font-family:var(--ui);font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-  .book-item p.book-desc{color:var(--ink-soft);font-size:.92rem;font-style:italic;margin-bottom:20px;max-width:280px;margin-left:auto;margin-right:auto}
-  .book-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+/* FRAGMENTOS — grid tipo Pinterest */
+.fragmentos-grid{column-count:3;column-gap:28px}
+.fragmento-card{break-inside:avoid;margin-bottom:28px;background:var(--fundo-quente-2);border-left:3px solid var(--dourado-suave);
+  padding:32px 28px}
+.fragmento-card blockquote{font-family:var(--font-citacao);font-style:italic;font-size:1.2rem;line-height:1.6;color:var(--preto-literario)}
+.fragmento-card cite{display:block;margin-top:18px;font-style:normal;font-size:.72rem;text-transform:uppercase;
+  letter-spacing:1.5px;color:var(--vermelho-poetico)}
+@media(max-width:900px){.fragmentos-grid{column-count:2}}
+@media(max-width:600px){.fragmentos-grid{column-count:1}}
 
-  /* NOVOS LIVROS / PAINEL — mantidos, estilo claro */
-  .contact-form{display:flex;flex-direction:column;gap:6px}
-  .contact-form label{font-family:var(--ui);font-size:.75rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-top:16px}
-  .contact-form input,.contact-form textarea{background:var(--paper);border:1px solid var(--line);border-radius:0;
-    padding:13px 14px;color:var(--ink);font-family:var(--body);font-size:1rem}
-  .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--accent)}
-  .contact-form button{margin-top:22px;align-self:flex-start}
-  .form-feedback{margin-top:14px;color:var(--accent);font-size:.9rem;font-style:italic}
-  .contact-list{list-style:none;margin:20px 0 28px}
-  .contact-list li{margin-bottom:12px;color:var(--ink-soft)}
+/* GALERIA */
+.galeria-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.galeria-item{position:relative;aspect-ratio:1/1;overflow:hidden}
+.galeria-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.galeria-item:hover img{transform:scale(1.06)}
+.galeria-legenda{position:absolute;left:0;right:0;bottom:0;padding:18px;background:linear-gradient(0deg,rgba(0,0,0,.65),transparent);
+  color:#f5f1e8;font-family:var(--font-citacao);font-style:italic;font-size:.9rem;opacity:0;transition:.3s}
+.galeria-item:hover .galeria-legenda{opacity:1}
+@media(max-width:768px){.galeria-grid{grid-template-columns:repeat(2,1fr)}}
 
-  /* ESCRITOS — revista literária minimalista */
-  .writings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line);margin-top:64px;border:1px solid var(--line)}
-  .writing-card{background:var(--paper);padding:56px 42px;display:flex;flex-direction:column;justify-content:space-between;min-height:320px}
-  .writing-card blockquote{font-family:var(--title);font-style:italic;font-size:1.28rem;line-height:1.65;color:var(--ink)}
-  .writing-card cite{display:block;margin-top:26px;font-style:normal;font-family:var(--ui);font-size:.72rem;
-    text-transform:uppercase;letter-spacing:2px;color:var(--accent)}
+/* FORMULÁRIOS */
+.form{display:flex;flex-direction:column;gap:6px;max-width:560px}
+.form label{font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--dourado-suave);margin-top:16px}
+.form input,.form select,.form textarea{background:var(--fundo-quente);border:1px solid var(--linha);
+  padding:13px 14px;color:var(--preto-literario);font-family:var(--font-texto);font-size:1rem}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--vermelho-poetico)}
+.form button{margin-top:22px;align-self:flex-start}
+.form-feedback{margin-top:14px;font-size:.9rem;font-style:italic;color:var(--vermelho-poetico)}
 
-  /* GALERIA */
-  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:18px;margin-top:64px}
-  .gallery-item{background-size:cover;background-position:center;position:relative;overflow:hidden}
-  .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
-  .gallery-item:hover img{transform:scale(1.06)}
-  .gallery-item:nth-child(1){grid-column:span 2;grid-row:span 2}
-  .gallery-item:nth-child(4){grid-column:span 2}
+/* LIVRO / ARTIGO INDIVIDUAL */
+.split{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
+.ficha-tecnica{list-style:none;margin:24px 0;border-top:1px solid var(--linha)}
+.ficha-tecnica li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--linha);font-size:.95rem}
+.ficha-tecnica strong{color:var(--preto-literario)}
+.excerto-box{background:var(--fundo-quente-2);border-left:3px solid var(--vermelho-poetico);padding:28px 32px;margin:28px 0}
+.excerto-box blockquote{font-family:var(--font-citacao);font-style:italic;font-size:1.15rem;line-height:1.7}
+.artigo-corpo{max-width:720px;margin:0 auto;font-size:1.1rem}
+.artigo-corpo p{margin-bottom:22px}
+.artigo-corpo blockquote{font-family:var(--font-citacao);font-style:italic;font-size:1.2rem;border-left:3px solid var(--dourado-suave);
+  padding-left:24px;margin:30px 0;color:var(--preto-literario)}
+.partilha{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
+.partilha a{border:1px solid var(--linha);padding:8px 16px;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+.partilha a:hover{border-color:var(--vermelho-poetico);color:var(--vermelho-poetico)}
 
-  /* CTA */
-  .cta{text-align:center;background:var(--ink);color:var(--paper)}
-  .cta h2{color:var(--paper)}
-  .cta p{color:#cfc7b4;margin-bottom:30px;font-style:italic;font-family:var(--title)}
+/* NEWSLETTER */
+.newsletter{background:var(--preto-literario);color:#f5f1e8;text-align:center}
+.newsletter h2{color:#f5f1e8}
+.newsletter p{color:#c8c2b2;font-family:var(--font-citacao);font-style:italic;margin-bottom:30px}
+.newsletter-form{display:flex;gap:12px;justify-content:center;max-width:440px;margin:0 auto;flex-wrap:wrap}
+.newsletter-form input{flex:1;min-width:200px;padding:14px 16px;border:1px solid rgba(245,241,232,.3);background:transparent;color:#f5f1e8}
+.newsletter-form input::placeholder{color:#a9a291}
 
-  /* CONTACTO */
-  .contact-split{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+/* FOOTER */
+footer{background:var(--fundo-quente-2);border-top:1px solid var(--linha);text-align:center;padding:60px 24px 34px}
+.footer-logo{font-family:var(--font-titulo);font-size:1.2rem;color:var(--preto-literario);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+.footer-nav,.footer-social{list-style:none;display:flex;justify-content:center;gap:24px;margin:20px 0;flex-wrap:wrap;font-size:.82rem;text-transform:uppercase;letter-spacing:.5px}
+.footer-nav a,.footer-social a{color:var(--cinza-suave)}
+.footer-nav a:hover,.footer-social a:hover{color:var(--vermelho-poetico)}
+.copyright{font-size:.78rem;opacity:.6;margin-top:24px}
 
-  /* FOOTER */
-  footer{background:var(--paper-3);border-top:1px solid var(--line);text-align:center;padding:64px 24px 36px;color:var(--ink-soft)}
-  .footer-logo{font-family:var(--title);font-size:1.2rem;letter-spacing:2px;color:var(--ink);margin-bottom:8px;text-transform:uppercase}
-  .tagline-small{font-family:var(--title);font-style:italic;color:var(--accent);margin:14px 0;font-size:1.05rem}
-  .footer-nav,.footer-social{list-style:none;display:flex;justify-content:center;gap:26px;margin:22px 0;flex-wrap:wrap;font-family:var(--ui);font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
-  .footer-nav a,.footer-social a{color:var(--ink-soft)}
-  .footer-nav a:hover,.footer-social a:hover{color:var(--accent)}
-  .copyright{font-family:var(--ui);font-size:.75rem;margin-top:28px;opacity:.6}
+@media(max-width:900px){.split{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .menu-toggle{display:flex}
+  .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--fundo-quente);flex-direction:column;
+    align-items:center;gap:18px;padding:24px 0;border-bottom:1px solid var(--linha);display:none}
+  .nav-links.open{display:flex}
+  section{padding:70px 0}
+  h1{font-size:2.2rem}
+  .galeria-grid{grid-template-columns:1fr}
+}
 
-  @media(max-width:900px){
-    .split,.contact-split{grid-template-columns:1fr}
-    .split-photo{order:-1}
-    .gallery-grid{grid-template-columns:repeat(2,1fr)}
-    .gallery-item:nth-child(1){grid-column:span 2}
-  }
-  @media(max-width:768px){
-    .menu-toggle{display:flex}
-    .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--paper);flex-direction:column;
-      align-items:center;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);display:none}
-    .nav-links.open{display:flex}
-    section{padding:80px 0}
-    .writing-card{padding:40px 26px}
-  }
+.modal-overlay{position:fixed;inset:0;background:rgba(20,18,14,.75);z-index:200;display:none;
+  align-items:center;justify-content:center;padding:24px}
+.modal-overlay.aberto{display:flex}
+.modal-box{background:var(--fundo-quente);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;
+  padding:44px 40px;position:relative;box-shadow:0 40px 80px rgba(0,0,0,.4)}
+.modal-fechar{position:absolute;top:16px;right:20px;background:none;border:none;font-size:1.6rem;
+  cursor:pointer;color:var(--cinza-suave);line-height:1}
+.admin-section{border-top:4px solid var(--dourado-suave)}
+
 </style>
 </head>
 <body>
-
 <header>
   <nav>
     <a href="#inicio" class="logo">Vida & Escritos</a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    <div style="display:flex;align-items:center;gap:16px">
+      <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo noturno">🌙</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#inicio">Início</a></li>
       <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#livros">Livros</a></li>
-      <li><a href="#escritos">Escritos</a></li>
+      <li><a href="#biblioteca">Biblioteca</a></li>
+      <li><a href="#artigos">Artigos</a></li>
+      <li><a href="#fragmentos">Fragmentos</a></li>
       <li><a href="#galeria">Galeria</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
   </nav>
 </header>
-
 <main>
+<section id="inicio" class="hero">
+  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1635409565052-65ff2fcd0eea?q=70&w=1600&auto=format&fit=crop')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Bem-vindo ao universo literário</span>
+    <h1>VIDA & ESCRITOS</h1>
+    <p class="lead">"Palavras que encontram significado entre a vida e o silêncio."</p>
+    <div class="hero-actions">
+      <a href="#biblioteca" class="btn btn-vermelho">Explorar os Livros</a>
+      <a href="#sobre" class="btn btn-outline" style="color:#f5f1e8;border-color:rgba(245,241,232,.6)">Entrar no Universo</a>
+    </div>
+  </div>
+</section>
+<section id="sobre">
+  <div class="container split">
+    <div class="reveal" style="aspect-ratio:4/5;background:url('https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;box-shadow:0 30px 60px -20px rgba(0,0,0,.35)"></div>
+    <div class="reveal">
+      <span class="eyebrow">O autor</span>
+      <h2>Entre a vida e aquilo que escrevo</h2>
+      <p style="color:var(--cinza-suave);margin-bottom:18px">Renato Nhachengo escreve como quem observa o mundo em silêncio antes de o nomear. A sua poesia nasce da memória, dos afetos por dizer e da liberdade de sentir sem pressa.</p>
+      <p style="color:var(--cinza-suave);margin-bottom:24px">Cada livro é uma paragem: um lugar onde a experiência humana, a saudade e a esperança encontram forma. Escrever é, para Renato, a maneira mais honesta de continuar a viver aquilo que já se viveu.</p>
+      <a href="#biblioteca" class="btn btn-dourado">Conhecer as obras</a>
+    </div>
+  </div>
+</section>
+<section id="biblioteca" class="section-alt">
+  <div class="container center">
+    <span class="eyebrow">A biblioteca</span>
+    <h2>Uma biblioteca digital</h2>
+    <p style="color:var(--cinza-suave);font-family:var(--font-citacao);font-style:italic;max-width:560px;margin:16px auto 0">Quatro obras, quatro travessias pela vida, pela memória e pelo silêncio.</p>
+    <div class="grid" id="livrosFixos" style="margin-top:64px"></div>
+  </div>
+</section>
 
-  <!-- HERO -->
-  <section id="inicio" class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <span class="hero-eyebrow">Bem-vindo ao universo literário</span>
-      <h1>VIDA & ESCRITOS</h1>
-      <p class="role">Poeta • Escritor</p>
-      <p class="quote">"Palavras que encontram significado entre a vida e o silêncio."</p>
-      <div class="hero-actions">
-        <a href="#livros" class="btn btn-solid">Explorar os Livros</a>
-        <a href="#sobre" class="btn btn-line">Entrar no Universo</a>
+<section id="novos-livros">
+  <div class="container center">
+    <span class="eyebrow">Recém-chegados</span>
+    <h2>Novos Livros</h2>
+    <div class="grid" id="livrosSupabase" style="margin-top:56px">
+      <p style="color:var(--cinza-suave)">A carregar...</p>
+    </div>
+  </div>
+</section>
+<section id="artigos" class="section-alt">
+  <div class="container center">
+    <span class="eyebrow">Leitura livre</span>
+    <h2>Artigos</h2>
+    <p style="color:var(--cinza-suave);font-family:var(--font-citacao);font-style:italic;max-width:560px;margin:16px auto 0">Textos de reflexão, disponíveis para leitura online.</p>
+    <div class="grid" id="artigosFixos" style="margin-top:56px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))"></div>
+  </div>
+</section>
+
+<section id="novos-artigos">
+  <div class="container center">
+    <span class="eyebrow">Recém-chegados</span>
+    <h2>Novos Artigos</h2>
+    <div class="grid" id="artigosSupabase" style="margin-top:56px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+      <p style="color:var(--cinza-suave)">A carregar...</p>
+    </div>
+  </div>
+</section>
+<section id="fragmentos">
+  <div class="container center">
+    <span class="eyebrow">Revista literária</span>
+    <h2>Palavras que ficaram</h2>
+    <p style="color:var(--cinza-suave);font-family:var(--font-citacao);font-style:italic;max-width:560px;margin:16px auto 40px">Fragmentos, pensamentos e pequenos excertos das obras.</p>
+  </div>
+  <div class="container">
+    <div class="fragmentos-grid">
+      <div class="fragmento-card reveal">
+        <blockquote>"Há noites que não foram feitas para dormir, mas para descobrir quem somos."</blockquote>
+        <cite>— Palavras Soltas</cite>
+      </div>
+      <div class="fragmento-card reveal">
+        <blockquote>"Tão belos são os teus encantos, e tão perfurantes são teus espinhos. O mundo é lindo, e você representa ele."</blockquote>
+        <cite>— Guerra das Flores, A Rosa Vermelha</cite>
+      </div>
+      <div class="fragmento-card reveal">
+        <blockquote>"Teus nomes são tuas raízes, africano."</blockquote>
+        <cite>— Teus Nomes São Tuas Raízes</cite>
+      </div>
+      <div class="fragmento-card reveal">
+        <blockquote>"Este é o grito delas, o grito que nasceu da tinta, sete tintas de amor que pintaram sangue e dor…"</blockquote>
+        <cite>— O Grito Delas</cite>
+      </div>
+      <div class="fragmento-card reveal">
+        <blockquote>"Ser africano é ser original, ser original é ser capaz de olhar para si como africano."</blockquote>
+        <cite>— Teus Nomes São Tuas Raízes</cite>
+      </div>
+      <div class="fragmento-card reveal">
+        <blockquote>"A diferença é o maior princípio do respeito mútuo."</blockquote>
+        <cite>— Guerra das Flores, A Rosa Vermelha</cite>
       </div>
     </div>
-  </section>
-
-  <!-- SOBRE -->
-  <section id="sobre">
-    <div class="container split">
-      <div class="split-photo reveal"></div>
-      <div class="split-text reveal">
-        <span class="eyebrow">O autor</span>
-        <h2>Entre a vida e aquilo que escrevo</h2>
-        <p>Renato Alizartino Manuel escreve como quem observa o mundo em silêncio antes de o nomear. A sua poesia nasce da memória, dos afetos por dizer e da liberdade de sentir sem pressa — um exercício contínuo de olhar a vida de frente e transformá-la em palavra.</p>
-        <p>Cada livro é uma paragem: um lugar onde a experiência humana, a saudade e a esperança encontram forma. Escrever é, para Renato, a maneira mais honesta de continuar a viver aquilo que já se viveu.</p>
-        <a href="#livros" class="link-arrow">Conheça as obras →</a>
+  </div>
+</section>
+<section id="galeria" class="section-alt">
+  <div class="container center">
+    <span class="eyebrow">Momentos contemplativos</span>
+    <h2>Galeria</h2>
+    <p style="color:var(--cinza-suave);font-family:var(--font-citacao);font-style:italic;max-width:560px;margin:16px auto 40px">A imagem também escreve aquilo que as palavras não conseguem dizer.</p>
+  </div>
+  <div class="container">
+    <div class="galeria-grid">
+      <div class="galeria-item reveal">
+        <img src="https://images.unsplash.com/photo-1759317700289-2f4be8f9b1db?q=80&w=900&auto=format&fit=crop" alt="Uma fileira de livros, uma vida de leitura." loading="lazy">
+        <div class="galeria-legenda">Uma fileira de livros, uma vida de leitura.</div>
+      </div>
+      <div class="galeria-item reveal">
+        <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=900&auto=format&fit=crop" alt="A tinta antes da palavra." loading="lazy">
+        <div class="galeria-legenda">A tinta antes da palavra.</div>
+      </div>
+      <div class="galeria-item reveal">
+        <img src="https://images.unsplash.com/photo-1640497186899-3f68570378ed?q=80&w=900&auto=format&fit=crop" alt="Uma página aberta é sempre um convite." loading="lazy">
+        <div class="galeria-legenda">Uma página aberta é sempre um convite.</div>
+      </div>
+      <div class="galeria-item reveal">
+        <img src="https://images.unsplash.com/photo-1780764818552-ec80ed39f841?q=80&w=900&auto=format&fit=crop" alt="A cidade também escreve à noite." loading="lazy">
+        <div class="galeria-legenda">A cidade também escreve à noite.</div>
+      </div>
+      <div class="galeria-item reveal">
+        <img src="https://images.unsplash.com/photo-1719588126773-2095e0d1e2ea?q=80&w=900&auto=format&fit=crop" alt="A mesa onde tudo começa." loading="lazy">
+        <div class="galeria-legenda">A mesa onde tudo começa.</div>
+      </div>
+      <div class="galeria-item reveal">
+        <img src="https://images.unsplash.com/photo-1635409565052-65ff2fcd0eea?q=80&w=900&auto=format&fit=crop" alt="Entre estantes e silêncios." loading="lazy">
+        <div class="galeria-legenda">Entre estantes e silêncios.</div>
       </div>
     </div>
-  </section>
-
-  <!-- LIVROS -->
-  <section id="livros" class="section-alt">
-    <div class="container">
-      <span class="eyebrow center" style="display:block;text-align:center">A biblioteca</span>
-      <h2 class="section-title center" style="text-align:center">Uma biblioteca digital</h2>
-      <p class="section-sub center" style="text-align:center">Quatro obras, quatro travessias pela vida, pela memória e pelo silêncio.</p>
-
-      <div class="library-grid">
-        <article class="book-item reveal">
-          <div class="book-cover-3d">
-            <div class="cover-face" style="background:linear-gradient(160deg,var(--burgundy),#3a1a1c)">
-              <span class="cover-title">Cartas Sem Escritos</span>
-              <span class="cover-mark">Vida & Escritos</span>
-            </div>
-          </div>
-          <h3>Cartas Sem Escritos</h3>
-          <p class="book-desc">Uma travessia pela memória e pelos sentimentos não ditos.</p>
-          <div class="book-actions">
-            <a href="Cartas_Sem_Escritos.pdf" target="_blank" class="btn btn-outline-ink">Ler</a>
-            <a href="Cartas_Sem_Escritos.pdf" download class="btn btn-dark">Baixar</a>
-          </div>
-        </article>
-
-        <article class="book-item reveal">
-          <div class="book-cover-3d">
-            <div class="cover-face" style="background:linear-gradient(160deg,var(--navy),#151a24)">
-              <span class="cover-title">Entre Olhares e Imagens</span>
-              <span class="cover-sub">Lentes Noutros Horizontes — Vol. I</span>
-              <span class="cover-mark">Vida & Escritos</span>
-            </div>
-          </div>
-          <h3>Entre Olhares e Imagens</h3>
-          <p class="book-subtitle">Lentes Noutros Horizontes — Volume I</p>
-          <p class="book-desc">Um olhar sobre o mundo através de imagens e palavras.</p>
-          <div class="book-actions">
-            <a href="Entre_Olhares_e_Imagens.pdf" target="_blank" class="btn btn-outline-ink">Ler</a>
-            <a href="Entre_Olhares_e_Imagens.pdf" download class="btn btn-dark">Baixar</a>
-          </div>
-        </article>
-
-        <article class="book-item reveal">
-          <div class="book-cover-3d">
-            <div class="cover-face" style="background:linear-gradient(160deg,var(--forest),#141d16)">
-              <span class="cover-title">Guerra das Flores</span>
-              <span class="cover-sub">A Rosa Vermelha</span>
-              <span class="cover-mark">Vida & Escritos</span>
-            </div>
-          </div>
-          <h3>Guerra das Flores</h3>
-          <p class="book-subtitle">A Rosa Vermelha</p>
-          <p class="book-desc">Conflitos humanos narrados através da delicadeza da poesia.</p>
-          <div class="book-actions">
-            <a href="A_Guerra_Das_Flores_A_Rosa_Vermelha.pdf" target="_blank" class="btn btn-outline-ink">Ler</a>
-            <a href="A_Guerra_Das_Flores_A_Rosa_Vermelha.pdf" download class="btn btn-dark">Baixar</a>
-          </div>
-        </article>
-
-        <article class="book-item reveal">
-          <div class="book-cover-3d">
-            <div class="cover-face" style="background:linear-gradient(160deg,var(--charcoal),#0f0d0a)">
-              <span class="cover-title">Em Busca da Noite Perfeita</span>
-              <span class="cover-mark">Vida & Escritos</span>
-            </div>
-          </div>
-          <h3>Em Busca da Noite Perfeita</h3>
-          <p class="book-desc">Uma jornada noturna em busca de sentido e liberdade.</p>
-          <div class="book-actions">
-            <a href="Em_Busca_Da_Noite_Perfeita.pdf" target="_blank" class="btn btn-outline-ink">Ler</a>
-            <a href="Em_Busca_Da_Noite_Perfeita.pdf" download class="btn btn-dark">Baixar</a>
-          </div>
-        </article>
-      </div>
+  </div>
+</section>
+<section id="contacto">
+  <div class="container split">
+    <form class="form" id="contactForm" novalidate>
+      <span class="eyebrow">Fale comigo</span>
+      <h2 style="font-size:2.1rem;margin-bottom:8px">Vamos conversar?</h2>
+      <p style="color:var(--cinza-suave);margin-bottom:8px">Fale sobre os livros, colaborações ou apenas para trocar palavras.</p>
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" required>
+      <label for="email">Email</label>
+      <input type="email" id="email" required>
+      <label for="mensagem">Mensagem</label>
+      <textarea id="mensagem" rows="6" required></textarea>
+      <button type="submit" class="btn btn-vermelho">Enviar Mensagem</button>
+      <p id="formFeedback" class="form-feedback"></p>
+    </form>
+    <div>
+      <span class="eyebrow">Encontre-me</span>
+      <h2>Redes e contacto</h2>
+      <ul class="ficha-tecnica">
+        <li><span>WhatsApp</span> <strong><a href="#" target="_blank" rel="noopener">843 833 691</a></strong></li>
+        <li><span>Facebook</span> <strong><a href="#" target="_blank" rel="noopener">Renato Nhachengo</a></strong></li>
+        <li><span>Instagram</span> <strong><a href="#" target="_blank" rel="noopener">Renato Nhachengo</a></strong></li>
+        <li><span>Email</span> <strong><a href="#">mrenatoalizartino@gmail.com</a></strong></li>
+      </ul>
+      <a href="#" class="btn btn-outline">Fale comigo no WhatsApp</a>
     </div>
-  </section>
+  </div>
+</section>
 
-    </div>
-  <!-- ESCRITOS -->
-  <section id="escritos">
-    <div class="container">
-      <span class="eyebrow center" style="display:block;text-align:center">Revista literária</span>
-      <h2 class="section-title center" style="text-align:center">Palavras que ficaram</h2>
-      <p class="section-sub center" style="text-align:center">Fragmentos, pensamentos e pequenos excertos das obras.</p>
-
-      <div class="writings-grid">
-        <div class="writing-card reveal">
-          <blockquote>"Há noites que não foram feitas para dormir, mas para descobrir quem somos."</blockquote>
-          <cite>— Palavras Soltas</cite>
-        </div>
-        <div class="writing-card reveal">
-          <blockquote>"Tão belos são os teus encantos, e tão perfurantes são teus espinhos. O mundo é lindo, e você representa ele."</blockquote>
-          <cite>— Guerra das Flores, A Rosa Vermelha</cite>
-        </div>
-        <div class="writing-card reveal">
-          <blockquote>"Teus nomes são tuas raízes, africano."</blockquote>
-          <cite>— Teus Nomes São Tuas Raízes</cite>
-        </div>
-        <div class="writing-card reveal">
-          <blockquote>"Este é o grito delas, o grito que nasceu da tinta, sete tintas de amor que pintaram sangue e dor…"</blockquote>
-          <cite>— O Grito Delas</cite>
-        </div>
-      </div>
-
-      <div style="text-align:center;margin-top:64px">
-        <a href="#livros" class="btn btn-outline-ink">Ler mais escritos</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ARTIGOS (leitura online) -->
-  <section id="artigos" class="section-alt">
-    <div class="container">
-      <span class="eyebrow center" style="display:block;text-align:center">Leitura livre</span>
-      <h2 class="section-title center" style="text-align:center">Artigos</h2>
-      <p class="section-sub center" style="text-align:center">Textos de reflexão, disponíveis apenas para leitura online.</p>
-      <div class="library-grid" style="margin-top:56px">
-        <article class="book-item reveal">
-          <div class="book-cover-3d">
-            <div class="cover-face" style="background:linear-gradient(160deg,var(--ink-soft),var(--charcoal))">
-              <span class="cover-title" style="font-size:1rem">Teus Nomes São Tuas Raízes</span>
-              <span class="cover-mark">Artigo</span>
-            </div>
-          </div>
-          <h3>Teus Nomes São Tuas Raízes</h3>
-          <p class="book-desc">Uma reflexão sobre a identidade e a originalidade dos nomes africanos.</p>
-          <div class="book-actions">
-            <a href="Teus_Nomes_Sao_Tuas_Raizes.pdf" target="_blank" class="btn btn-outline-ink">Ler</a>
-          </div>
-        </article>
-        <article class="book-item reveal">
-          <div class="book-cover-3d">
-            <div class="cover-face" style="background:linear-gradient(160deg,var(--ink-soft),var(--charcoal))">
-              <span class="cover-title" style="font-size:1rem">O Grito Delas</span>
-              <span class="cover-sub">com Amarildo Rungo</span>
-              <span class="cover-mark">Artigo</span>
-            </div>
-          </div>
-          <h3>O Grito Delas</h3>
-          <p class="book-subtitle">com Amarildo Rungo</p>
-          <p class="book-desc">Transcrição e interpretação literária de uma obra pictórica sobre o feminicídio.</p>
-          <div class="book-actions">
-            <a href="O_Grito_Delas.pdf" target="_blank" class="btn btn-outline-ink">Ler</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALERIA -->
-  <section id="galeria">
-    <div class="container">
-      <span class="eyebrow center" style="display:block;text-align:center">Momentos contemplativos</span>
-      <h2 class="section-title center" style="text-align:center">Galeria</h2>
-      <p class="section-sub center" style="text-align:center">A imagem também escreve aquilo que as palavras não conseguem dizer.</p>
-      <div class="gallery-grid reveal">
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1759317700289-2f4be8f9b1db?q=80&w=1400&auto=format&fit=crop" alt="Fileira de livros antigos" loading="lazy"></div>
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=900&auto=format&fit=crop" alt="Caneta sobre papel" loading="lazy"></div>
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1640497186899-3f68570378ed?q=80&w=900&auto=format&fit=crop" alt="Livro aberto" loading="lazy"></div>
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1780764818552-ec80ed39f841?q=80&w=1400&auto=format&fit=crop" alt="Luz da cidade através da janela" loading="lazy"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="container">
-      <h2>Vamos conversar?</h2>
-      <p>Fale comigo sobre os livros, colaborações ou apenas para trocar palavras.</p>
-      <a href="#contacto" class="btn btn-line">Ir para o contacto</a>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section id="contacto" class="section-alt">
-    <div class="container contact-split">
-      <form id="contactForm" class="contact-form" novalidate>
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" required>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-        <label for="mensagem">Mensagem</label>
-        <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
-        <button type="submit" class="btn btn-dark">Enviar Mensagem</button>
-        <p id="formFeedback" class="form-feedback"></p>
+<section class="newsletter">
+  <div class="container">
+    <h2>Fique por dentro dos novos escritos</h2>
+    <p>Receba aviso quando um novo livro, artigo ou fragmento for publicado.</p>
+    <form class="newsletter-form" id="newsletterForm">
+      <input type="email" placeholder="O seu email" required>
+      <button type="submit" class="btn btn-vermelho">Subscrever</button>
+    </form>
+    <p id="newsletterFeedback" class="form-feedback" style="color:#e4d9bd"></p>
+  </div>
+</section>
+<section id="admin" class="section-alt admin-section">
+  <div class="container" style="max-width:480px">
+    <div id="loginBox">
+      <span class="eyebrow">Acesso restrito · Painel do autor</span>
+      <h2 style="font-size:1.7rem;margin-bottom:24px">Entrar no painel</h2>
+      <form class="form" id="loginForm">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" required>
+        <label for="loginSenha">Palavra-passe</label>
+        <input type="password" id="loginSenha" required>
+        <button type="submit" class="btn btn-vermelho">Entrar</button>
+        <p id="loginFeedback" class="form-feedback"></p>
       </form>
-      <div>
-        <span class="eyebrow">Fale comigo</span>
-        <h2>Encontre-me</h2>
-        <ul class="contact-list">
-          <li><strong>WhatsApp:</strong> <a href="#" target="_blank" rel="noopener">843 833 691</a></li>
-          <li><strong>Facebook:</strong> <a href="#" target="_blank" rel="noopener">Renato Nhachengo</a></li>
-          <li><strong>Instagram:</strong> <a href="#" target="_blank" rel="noopener">Renato Nhachengo</a></li>
-          <li><strong>Email:</strong> <a href="#">mrenatoalizartino@gmail.com</a></li>
-        </ul>
-        <a href="#" class="btn btn-outline-ink">Fale comigo no WhatsApp</a>
-      </div>
     </div>
-  </section>
 
+    <div id="painelBox" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px">
+        <h2 style="font-size:1.5rem">Painel do Autor</h2>
+        <button class="btn btn-outline" id="logoutBtn" style="padding:8px 18px;font-size:.7rem">Sair</button>
+      </div>
+
+      <h3 style="font-size:1.15rem;margin-bottom:16px">Adicionar Livro</h3>
+      <form class="form" id="livroForm">
+        <label for="lTitulo">Título</label>
+        <input type="text" id="lTitulo" required>
+        <label for="lSubtitulo">Subtítulo</label>
+        <input type="text" id="lSubtitulo">
+        <label for="lSinopse">Sinopse</label>
+        <textarea id="lSinopse" rows="3"></textarea>
+        <label for="lPdf">Link do PDF</label>
+        <input type="text" id="lPdf" placeholder="https://...">
+        <button type="submit" class="btn btn-vermelho">Publicar Livro</button>
+        <p id="livroFeedback" class="form-feedback"></p>
+      </form>
+
+      <h3 style="font-size:1.15rem;margin:44px 0 16px">Adicionar Artigo</h3>
+      <form class="form" id="artigoForm">
+        <label for="aTitulo">Título</label>
+        <input type="text" id="aTitulo" required>
+        <label for="aSubtitulo">Subtítulo</label>
+        <input type="text" id="aSubtitulo">
+        <label for="aResumo">Resumo</label>
+        <textarea id="aResumo" rows="3"></textarea>
+        <label for="aPdf">Link do PDF (leitura online)</label>
+        <input type="text" id="aPdf" placeholder="https://...">
+        <button type="submit" class="btn btn-vermelho">Publicar Artigo</button>
+        <p id="artigoFeedback" class="form-feedback"></p>
+      </form>
+    </div>
+  </div>
+</section>
 </main>
-
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <button class="modal-fechar" id="modalFechar" aria-label="Fechar">&times;</button>
+    <div id="modalConteudo"></div>
+  </div>
+</div>
 <footer>
   <div class="container">
     <p class="footer-logo">Vida & Escritos</p>
-    <p>Poeta e Escritor</p>
-    <p class="tagline-small">"Palavras que encontram significado entre a vida e o silêncio."</p>
+    <p style="color:var(--cinza-suave)">Poeta e Escritor</p>
     <ul class="footer-nav">
       <li><a href="#inicio">Início</a></li>
       <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#livros">Livros</a></li>
-      <li><a href="#escritos">Escritos</a></li>
-      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#biblioteca">Biblioteca</a></li>
+      <li><a href="#artigos">Artigos</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <ul class="footer-social">
@@ -432,355 +462,201 @@
     <p class="copyright">© 2026 Renato Nhachengo — Todos os direitos reservados.</p>
   </div>
 </footer>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    if (menuToggle && navLinks) {
-      menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-      navLinks.querySelectorAll('a').forEach(link =>
-        link.addEventListener('click', () => navLinks.classList.remove('open'))
-      );
-    }
+const SUPABASE_URL = 'https://uxvtewwealwtntnbyjyh.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_l79iQtPWsFQG2GKygQ7-dg_Wy2xQot6';
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    const form = document.getElementById('contactForm');
-    const feedback = document.getElementById('formFeedback');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const nome = document.getElementById('nome').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const mensagem = document.getElementById('mensagem').value.trim();
-        if (!nome || !email || !mensagem) {
-          feedback.textContent = 'Por favor, preencha todos os campos.';
-          feedback.style.color = '#a03d3d';
-          return;
-        }
-        feedback.textContent = `Obrigado, ${nome}! A sua mensagem foi registada (envio real ainda por configurar).`;
-        feedback.style.color = '';
-        form.reset();
-      });
-    }
+const LIVROS_FIXOS = [
+  { id: 'cartas-sem-escritos', titulo: 'Cartas Sem Escritos', subtitulo: '', desc: 'Uma travessia pela memória e pelos sentimentos não ditos.', pdf: 'Cartas_Sem_Escritos.pdf', cor: 'linear-gradient(160deg,#5c2a2e,#3a1a1c)' },
+  { id: 'entre-olhares-e-imagens', titulo: 'Entre Olhares e Imagens', subtitulo: 'Lentes Noutros Horizontes — Vol. I', desc: 'Um olhar sobre o mundo através de imagens e palavras.', pdf: 'Entre_Olhares_e_Imagens.pdf', cor: 'linear-gradient(160deg,#2b3446,#151a24)' },
+  { id: 'guerra-das-flores', titulo: 'Guerra das Flores', subtitulo: 'A Rosa Vermelha', desc: 'Conflitos humanos narrados através da delicadeza da poesia.', pdf: 'A_Guerra_Das_Flores_A_Rosa_Vermelha.pdf', cor: 'linear-gradient(160deg,#2f3d31,#141d16)' },
+  { id: 'em-busca-da-noite-perfeita', titulo: 'Em Busca da Noite Perfeita', subtitulo: '', desc: 'Uma jornada noturna em busca de sentido e liberdade.', pdf: 'Em_Busca_Da_Noite_Perfeita.pdf', cor: 'linear-gradient(160deg,#2a2723,#0f0d0a)' },
+];
+const ARTIGOS_FIXOS = [
+  { id: 'teus-nomes-sao-tuas-raizes', titulo: 'Teus Nomes São Tuas Raízes', subtitulo: '', desc: 'Uma reflexão sobre a identidade e a originalidade dos nomes africanos.', pdf: 'Teus_Nomes_Sao_Tuas_Raizes.pdf' },
+  { id: 'o-grito-delas', titulo: 'O Grito Delas', subtitulo: 'com Amarildo Rungo', desc: 'Transcrição e interpretação literária de uma obra pictórica sobre o feminicídio.', pdf: 'O_Grito_Delas.pdf' },
+];
 
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      revealEls.forEach(el => io.observe(el));
+function cartaoLivro(l){
+  return `<article class="livro-card reveal visible">
+    <div class="capa" onclick='abrirModalLivro(${JSON.stringify(l)})'>
+      <div class="capa-face" style="background:${l.cor}">
+        <span class="capa-titulo">${l.titulo}</span>
+        ${l.subtitulo ? `<span class="capa-sub">${l.subtitulo}</span>` : ''}
+        <span class="capa-marca">Vida & Escritos</span>
+      </div>
+    </div>
+    <h3>${l.titulo}</h3>
+    ${l.subtitulo ? `<p class="livro-meta">${l.subtitulo}</p>` : ''}
+    <p class="livro-desc">${l.desc}</p>
+    <div class="card-actions">
+      <a href="${l.pdf}" target="_blank" class="btn btn-outline" style="padding:10px 20px;font-size:.72rem">Ler</a>
+      <a href="${l.pdf}" download class="btn btn-vermelho" style="padding:10px 20px;font-size:.72rem">Baixar</a>
+    </div>
+  </article>`;
+}
+function cartaoArtigo(a){
+  return `<article class="artigo-card reveal visible">
+    <p class="data">Artigo</p>
+    <h3 style="cursor:pointer" onclick='abrirModalArtigo(${JSON.stringify(a)})'>${a.titulo}</h3>
+    ${a.subtitulo ? `<p class="tag">${a.subtitulo}</p>` : ''}
+    <p>${a.desc}</p>
+    <a href="${a.pdf}" target="_blank" class="btn btn-outline" style="padding:10px 20px;font-size:.72rem">Ler online</a>
+  </article>`;
+}
+
+window.abrirModalLivro = function(l){
+  document.getElementById('modalConteudo').innerHTML = `
+    <span class="eyebrow">Livro</span>
+    <h2 style="margin-bottom:6px">${l.titulo}</h2>
+    ${l.subtitulo ? `<p class="livro-meta" style="margin-bottom:18px">${l.subtitulo}</p>` : ''}
+    <p style="color:var(--cinza-suave);margin-bottom:26px">${l.desc}</p>
+    <div class="card-actions" style="justify-content:flex-start">
+      <a href="${l.pdf}" target="_blank" class="btn btn-outline">Ler online</a>
+      <a href="${l.pdf}" download class="btn btn-vermelho">Baixar PDF</a>
+    </div>
+    <div class="partilha">
+      <a href="https://wa.me/?text=${encodeURIComponent(l.titulo + ' — Vida & Escritos')}" target="_blank">Partilhar no WhatsApp</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}" target="_blank">Partilhar no Facebook</a>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('aberto');
+};
+window.abrirModalArtigo = function(a){
+  document.getElementById('modalConteudo').innerHTML = `
+    <span class="eyebrow">Artigo</span>
+    <h2 style="margin-bottom:6px">${a.titulo}</h2>
+    ${a.subtitulo ? `<p class="livro-meta" style="margin-bottom:18px">${a.subtitulo}</p>` : ''}
+    <p style="color:var(--cinza-suave);margin-bottom:26px">${a.desc}</p>
+    <a href="${a.pdf}" target="_blank" class="btn btn-vermelho">Ler artigo completo</a>
+    <div class="partilha">
+      <a href="https://wa.me/?text=${encodeURIComponent(a.titulo + ' — Vida & Escritos')}" target="_blank">Partilhar no WhatsApp</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}" target="_blank">Partilhar no Facebook</a>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('aberto');
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('livrosFixos').innerHTML = LIVROS_FIXOS.map(cartaoLivro).join('');
+  document.getElementById('artigosFixos').innerHTML = ARTIGOS_FIXOS.map(cartaoArtigo).join('');
+
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const themeToggle = document.getElementById('themeToggle');
+  if (localStorage.getItem('tema') === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeToggle.textContent='☀️'; }
+  themeToggle.addEventListener('click', () => {
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+      document.documentElement.removeAttribute('data-theme'); localStorage.setItem('tema','light'); themeToggle.textContent='🌙';
     } else {
-      revealEls.forEach(el => el.classList.add('visible'));
+      document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('tema','dark'); themeToggle.textContent='☀️';
     }
   });
-   <!-- ============================================ -->
-<!-- ===== PAINEL ADMINISTRATIVO (SUPABASE) ===== -->
-<!-- ============================================ -->
-<section id="admin" class="admin-section">
-  <div id="loginBox">
-    <h2 style="font-size:1.7rem;margin-bottom:24px;">Entrar no Painel</h2>
-    <form id="loginForm">
-      <label for="loginEmail">Email</label>
-      <input type="email" id="loginEmail" required>
-      
-      <label for="loginSenha">Palavra-passe</label>
-      <input type="password" id="loginSenha" required>
-      
-      <button type="submit">Entrar</button>
-      <p id="loginFeedback" class="feedback"></p>
-    </form>
-  </div>
 
-  <div id="painelBox" style="display:none;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;">
-      <h2 style="font-size:1.5rem;">Painel do Autor</h2>
-      <button id="logoutBtn" class="btn-sair">Sair</button>
-    </div>
-
-    <!-- Publicar Livro -->
-    <h3 style="font-size:1.15rem;margin-bottom:16px;">📚 Publicar Livro</h3>
-    <form id="livroForm">
-      <label for="lTitulo">Título *</label>
-      <input type="text" id="lTitulo" required>
-      
-      <label for="lSubtitulo">Subtítulo</label>
-      <input type="text" id="lSubtitulo">
-      
-      <label for="lAno">Ano de publicação</label>
-      <input type="text" id="lAno" placeholder="2026">
-      
-      <label for="lGenero">Género</label>
-      <input type="text" id="lGenero" placeholder="Poesia, Ficção, Ensaio...">
-      
-      <label for="lSinopse">Sinopse</label>
-      <textarea id="lSinopse" rows="3"></textarea>
-      
-      <label for="lCapa">Link da capa (imagem, opcional)</label>
-      <input type="text" id="lCapa" placeholder="https://...jpg">
-      
-      <label for="lPdf">Link do PDF *</label>
-      <input type="text" id="lPdf" placeholder="https://...pdf" required>
-      
-      <button type="submit">Publicar Livro</button>
-      <p id="livroFeedback" class="feedback"></p>
-    </form>
-
-    <!-- Lista de Livros -->
-    <h3 style="font-size:1.05rem;margin:36px 0 14px;">Livros publicados</h3>
-    <div id="listaLivros">
-      <p style="font-size:.9rem;color:#888;">A carregar...</p>
-    </div>
-
-    <!-- Publicar Artigo -->
-    <h3 style="font-size:1.15rem;margin:52px 0 16px;">✍️ Publicar Artigo</h3>
-    <form id="artigoForm">
-      <label for="aTitulo">Título *</label>
-      <input type="text" id="aTitulo" required>
-      
-      <label for="aSubtitulo">Subtítulo</label>
-      <input type="text" id="aSubtitulo">
-      
-      <label for="aResumo">Resumo</label>
-      <textarea id="aResumo" rows="3"></textarea>
-      
-      <label for="aPdf">Link do PDF *</label>
-      <input type="text" id="aPdf" placeholder="https://...pdf" required>
-      
-      <button type="submit">Publicar Artigo</button>
-      <p id="artigoFeedback" class="feedback"></p>
-    </form>
-
-    <!-- Lista de Artigos -->
-    <h3 style="font-size:1.05rem;margin:36px 0 14px;">Artigos publicados</h3>
-    <div id="listaArtigos">
-      <p style="font-size:.9rem;color:#888;">A carregar...</p>
-    </div>
-  </div>
-</section>
-  /* Estilos para o painel administrativo */
-.admin-section {
-  padding: 60px 20px;
-  max-width: 640px;
-  margin: 0 auto;
-}
-.admin-section input,
-.admin-section textarea {
-  width: 100%;
-  padding: 13px 14px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  font-family: inherit;
-  box-sizing: border-box;
-}
-.admin-section label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-top: 16px;
-  display: block;
-}
-.admin-section button[type="submit"] {
-  margin-top: 22px;
-  padding: 14px 32px;
-  background: #b03a2e;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-.admin-section button[type="submit"]:hover {
-  opacity: 0.9;
-}
-.btn-sair {
-  padding: 8px 18px;
-  font-size: 0.7rem;
-  background: transparent;
-  border: 1px solid #1a1a1a;
-  cursor: pointer;
-}
-.btn-eliminar {
-  padding: 6px 14px;
-  font-size: 0.65rem;
-  background: transparent;
-  border: 1px solid #b03a2e;
-  color: #b03a2e;
-  cursor: pointer;
-}
-.btn-eliminar:hover {
-  background: #b03a2e;
-  color: #fff;
-}
-.item-lista {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 14px;
-  border: 1px solid #ddd;
-  background: #f9f9f9;
-  margin-bottom: 8px;
-}
-.feedback {
-  margin-top: 14px;
-  font-size: 0.9rem;
-  font-style: italic;
-  color: #b03a2e;
-}
-.feedback-sucesso {
-  color: #c9a96e !important;
-}
-  // ===== PAINEL ADMINISTRATIVO - SUPABASE =====
-try {
-  const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
-
-  const SUPABASE_URL = 'https://uxvtewwealwtntnbyjyh.supabase.co';
-  const SUPABASE_KEY = 'sb_publishable_l79iQtPWsFQG2GKygQ7-dg_Wy2xQot6';
-  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
-  function gerarId(t) {
-    return t.toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '') + '-' + Date.now().toString(36);
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible'); io.unobserve(e.target);} }), {threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   }
 
-  async function carregarListasAdmin() {
-    const listaL = document.getElementById('listaLivros');
-    const listaA = document.getElementById('listaArtigos');
-    if (!listaL || !listaA) return;
+  document.getElementById('modalFechar').addEventListener('click', () => document.getElementById('modalOverlay').classList.remove('aberto'));
+  document.getElementById('modalOverlay').addEventListener('click', (e) => { if(e.target.id==='modalOverlay') e.currentTarget.classList.remove('aberto'); });
 
-    const { data: livros, error: eL } = await supabase.from('livros').select('*').order('created_at', { ascending: false });
-    if (eL) console.error('Erro ao carregar livros:', eL);
-    
-    listaL.innerHTML = !livros || livros.length === 0
-      ? '<p style="font-size:.9rem;color:#888;">Ainda não publicaste nenhum livro.</p>'
-      : livros.map(l => `
-        <div class="item-lista">
-          <span style="font-size:.9rem;">${l.titulo}${l.ano ? ' · ' + l.ano : ''}</span>
-          <button class="btn-eliminar" onclick="eliminarLivro('${l.id}')">Eliminar</button>
-        </div>
-      `).join('');
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nome = document.getElementById('nome').value.trim();
+    const fb = document.getElementById('formFeedback');
+    if (!nome) { fb.textContent = 'Por favor, preencha todos os campos.'; return; }
+    fb.style.color = 'var(--dourado-suave)';
+    fb.textContent = `Obrigado, ${nome}! A sua mensagem foi registada.`;
+    form.reset();
+  });
 
-    const { data: artigos, error: eA } = await supabase.from('artigos').select('*').order('created_at', { ascending: false });
-    if (eA) console.error('Erro ao carregar artigos:', eA);
-    
-    listaA.innerHTML = !artigos || artigos.length === 0
-      ? '<p style="font-size:.9rem;color:#888;">Ainda não publicaste nenhum artigo.</p>'
-      : artigos.map(a => `
-        <div class="item-lista">
-          <span style="font-size:.9rem;">${a.titulo}</span>
-          <button class="btn-eliminar" onclick="eliminarArtigo('${a.id}')">Eliminar</button>
-        </div>
-      `).join('');
+  document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('newsletterFeedback').textContent = 'Obrigado por subscrever!';
+    e.target.reset();
+  });
+
+  carregarSupabase();
+  configurarAdmin();
+});
+
+async function carregarSupabase(){
+  const gridL = document.getElementById('livrosSupabase');
+  const { data: dl, error: el } = await supabase.from('livros').select('*').order('created_at', { ascending: false });
+  if (el || !dl || dl.length === 0) gridL.innerHTML = '<p style="color:var(--cinza-suave)">Ainda não há novos livros publicados aqui.</p>';
+  else gridL.innerHTML = dl.map(l => cartaoLivro({ id:l.id, titulo:l.titulo, subtitulo:l.subtitulo||'', desc:l.sinopse||'', pdf:l.pdfurl||'#', cor:'linear-gradient(160deg,#7f8c8d,#2d2d2d)' })).join('');
+
+  const gridA = document.getElementById('artigosSupabase');
+  const { data: da, error: ea } = await supabase.from('artigos').select('*').order('created_at', { ascending: false });
+  if (ea || !da || da.length === 0) gridA.innerHTML = '<p style="color:var(--cinza-suave)">Ainda não há novos artigos publicados aqui.</p>';
+  else gridA.innerHTML = da.map(a => cartaoArtigo({ id:a.id, titulo:a.titulo, subtitulo:a.subtitulo||'', desc:a.resumo||'', pdf:a.pdfurl||'#' })).join('');
+}
+
+function configurarAdmin(){
+  const loginBox = document.getElementById('loginBox');
+  const painelBox = document.getElementById('painelBox');
+  const loginForm = document.getElementById('loginForm');
+  const loginFeedback = document.getElementById('loginFeedback');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  async function estado(){
+    const { data: { session } } = await supabase.auth.getSession();
+    loginBox.style.display = session ? 'none' : 'block';
+    painelBox.style.display = session ? 'block' : 'none';
   }
+  estado();
 
-  window.eliminarLivro = async function(id) {
-    if (!confirm('Eliminar este livro definitivamente?')) return;
-    const { error } = await supabase.from('livros').delete().eq('id', id);
-    if (error) { alert('Erro ao eliminar. Confirma que estás autenticado.'); console.error(error); return; }
-    carregarListasAdmin();
-  };
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    const senha = document.getElementById('loginSenha').value;
+    const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
+    if (error) { loginFeedback.textContent = 'Email ou palavra-passe incorretos.'; return; }
+    loginFeedback.textContent = ''; estado();
+  });
+  logoutBtn.addEventListener('click', async () => { await supabase.auth.signOut(); estado(); });
 
-  window.eliminarArtigo = async function(id) {
-    if (!confirm('Eliminar este artigo definitivamente?')) return;
-    const { error } = await supabase.from('artigos').delete().eq('id', id);
-    if (error) { alert('Erro ao eliminar. Confirma que estás autenticado.'); console.error(error); return; }
-    carregarListasAdmin();
-  };
+  function gerarId(t){ return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') + '-' + Date.now().toString(36); }
 
-  function configurarAdmin() {
-    const loginBox = document.getElementById('loginBox');
-    const painelBox = document.getElementById('painelBox');
-    const loginForm = document.getElementById('loginForm');
-    const loginFeedback = document.getElementById('loginFeedback');
-    const logoutBtn = document.getElementById('logoutBtn');
+  document.getElementById('livroForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const titulo = document.getElementById('lTitulo').value.trim();
+    const fb = document.getElementById('livroFeedback');
+    if (!titulo) { fb.textContent = 'O título é obrigatório.'; return; }
+    const { error } = await supabase.from('livros').insert([{
+      id: gerarId(titulo), titulo,
+      subtitulo: document.getElementById('lSubtitulo').value.trim(),
+      sinopse: document.getElementById('lSinopse').value.trim(),
+      pdfurl: document.getElementById('lPdf').value.trim()
+    }]);
+    if (error) { fb.textContent = 'Erro ao publicar. Confirma se estás autenticado.'; console.error(error); return; }
+    fb.style.color = 'var(--dourado-suave)'; fb.textContent = `"${titulo}" foi publicado com sucesso!`;
+    e.target.reset(); carregarSupabase();
+  });
 
-    async function verificarEstado() {
-      const { data: { session } } = await supabase.auth.getSession();
-      loginBox.style.display = session ? 'none' : 'block';
-      painelBox.style.display = session ? 'block' : 'none';
-      if (session) carregarListasAdmin();
-    }
-    verificarEstado();
-
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('loginEmail').value.trim();
-      const senha = document.getElementById('loginSenha').value;
-      const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
-      if (error) { loginFeedback.textContent = 'Email ou palavra-passe incorretos.'; return; }
-      loginFeedback.textContent = '';
-      verificarEstado();
-    });
-
-    logoutBtn.addEventListener('click', async () => {
-      await supabase.auth.signOut();
-      verificarEstado();
-    });
-
-    document.getElementById('livroForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const titulo = document.getElementById('lTitulo').value.trim();
-      const pdf = document.getElementById('lPdf').value.trim();
-      const fb = document.getElementById('livroFeedback');
-      if (!titulo || !pdf) { fb.textContent = 'Título e link do PDF são obrigatórios.'; return; }
-      
-      const { error } = await supabase.from('livros').insert([{
-        id: gerarId(titulo),
-        titulo,
-        subtitulo: document.getElementById('lSubtitulo').value.trim(),
-        ano: document.getElementById('lAno').value.trim(),
-        genero: document.getElementById('lGenero').value.trim(),
-        sinopse: document.getElementById('lSinopse').value.trim(),
-        capaurl: document.getElementById('lCapa').value.trim(),
-        pdfurl: pdf
-      }]);
-      
-      if (error) { fb.textContent = 'Erro ao publicar. Confirma que estás autenticado.'; console.error(error); return; }
-      fb.className = 'feedback feedback-sucesso';
-      fb.textContent = `✅ "${titulo}" foi publicado com sucesso!`;
-      e.target.reset();
-      carregarListasAdmin();
-    });
-
-    document.getElementById('artigoForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const titulo = document.getElementById('aTitulo').value.trim();
-      const pdf = document.getElementById('aPdf').value.trim();
-      const fb = document.getElementById('artigoFeedback');
-      if (!titulo || !pdf) { fb.textContent = 'Título e link do PDF são obrigatórios.'; return; }
-      
-      const { error } = await supabase.from('artigos').insert([{
-        id: gerarId(titulo),
-        titulo,
-        subtitulo: document.getElementById('aSubtitulo').value.trim(),
-        resumo: document.getElementById('aResumo').value.trim(),
-        pdfurl: pdf
-      }]);
-      
-      if (error) { fb.textContent = 'Erro ao publicar. Confirma que estás autenticado.'; console.error(error); return; }
-      fb.className = 'feedback feedback-sucesso';
-      fb.textContent = `✅ "${titulo}" foi publicado com sucesso!`;
-      e.target.reset();
-      carregarListasAdmin();
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', configurarAdmin);
-
-} catch (err) {
-  console.error('Erro ao ligar ao Supabase:', err);
-  document.addEventListener('DOMContentLoaded', () => {
-    const listaL = document.getElementById('listaLivros');
-    const listaA = document.getElementById('listaArtigos');
-    if (listaL) listaL.innerHTML = '<p style="font-size:.9rem;color:#888;">Não foi possível ligar à base de dados.</p>';
-    if (listaA) listaA.innerHTML = '<p style="font-size:.9rem;color:#888;">Não foi possível ligar à base de dados.</p>';
+  document.getElementById('artigoForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const titulo = document.getElementById('aTitulo').value.trim();
+    const fb = document.getElementById('artigoFeedback');
+    if (!titulo) { fb.textContent = 'O título é obrigatório.'; return; }
+    const { error } = await supabase.from('artigos').insert([{
+      id: gerarId(titulo), titulo,
+      subtitulo: document.getElementById('aSubtitulo').value.trim(),
+      resumo: document.getElementById('aResumo').value.trim(),
+      pdfurl: document.getElementById('aPdf').value.trim()
+    }]);
+    if (error) { fb.textContent = 'Erro ao publicar. Confirma se estás autenticado.'; console.error(error); return; }
+    fb.style.color = 'var(--dourado-suave)'; fb.textContent = `"${titulo}" foi publicado com sucesso!`;
+    e.target.reset(); carregarSupabase();
   });
 }
+</script>
+</body>
+</html>
