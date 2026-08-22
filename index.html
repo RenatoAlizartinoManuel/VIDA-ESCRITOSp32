@@ -286,95 +286,7 @@
     </div>
   </section>
 
-  <!-- NOVOS LIVROS (via Supabase) -->
-  <section id="novos-livros">
-    <div class="container">
-      <span class="eyebrow center" style="display:block;text-align:center">Recém-chegados</span>
-      <h2 class="section-title center" style="text-align:center">Novos Livros</h2>
-      <p class="section-sub center" style="text-align:center">Livros adicionados diretamente através deste painel.</p>
-      <div class="library-grid" id="livrosSupabaseGrid" style="margin-top:56px">
-        <p style="color:var(--ink-soft);text-align:center;grid-column:1/-1">A carregar...</p>
-      </div>
     </div>
-  </section>
-
-  <!-- ÁREA RESTRITA AO AUTOR -->
-<section id="area-autor" class="section-alt">
-  <div class="container">
-
-    <span class="eyebrow center" style="display:block;text-align:center">
-      Área restrita ao autor
-    </span>
-
-    <h2 class="section-title center" style="text-align:center">
-      Acesso do Autor
-    </h2>
-
-    <p class="section-sub center" style="text-align:center;margin-bottom:48px">
-      Área exclusiva para gestão e publicação dos livros.
-    </p>
-
-    <!-- LOGIN -->
-    <div id="autorLoginBox" style="max-width:520px;margin:0 auto;">
-
-      <form id="autorLoginForm" class="contact-form">
-
-        <label for="autorEmail">E-mail</label>
-        <input type="email" id="autorEmail" autocomplete="email" required>
-
-        <label for="autorPassword">Palavra-passe</label>
-        <input type="password" id="autorPassword" autocomplete="current-password" required>
-
-        <button type="submit" class="btn btn-dark">
-          Entrar
-        </button>
-
-        <p id="autorLoginFeedback" class="form-feedback"></p>
-
-      </form>
-
-    </div>
-
-    <!-- PAINEL DO AUTOR -->
-    <div id="autorPanel" style="display:none;max-width:520px;margin:0 auto;">
-
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;">
-
-        <strong>Gestão de Livros</strong>
-
-        <button id="autorLogout" type="button" class="btn btn-outline-ink">
-          Sair
-        </button>
-
-      </div>
-
-      <form id="livroForm" class="contact-form">
-
-        <label for="livroTitulo">Título</label>
-        <input type="text" id="livroTitulo" required>
-
-        <label for="livroSubtitulo">Subtítulo (opcional)</label>
-        <input type="text" id="livroSubtitulo">
-
-        <label for="livroSinopse">Sinopse</label>
-        <textarea id="livroSinopse" rows="4"></textarea>
-
-        <label for="livroPdfUrl">Link do PDF</label>
-        <input type="url" id="livroPdfUrl" placeholder="https://...">
-
-        <button type="submit" class="btn btn-dark">
-          Publicar Livro
-        </button>
-
-        <p id="livroFeedback" class="form-feedback"></p>
-
-      </form>
-
-    </div>
-
-  </div>
-</section>
-
   <!-- ESCRITOS -->
   <section id="escritos">
     <div class="container">
@@ -567,355 +479,308 @@
       revealEls.forEach(el => el.classList.add('visible'));
     }
   });
-</script><!-- SISTEMA DE LIVROS COM ÁREA RESTRITA DO AUTOR -->
-<script type="module">
-  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+   <!-- ============================================ -->
+<!-- ===== PAINEL ADMINISTRATIVO (SUPABASE) ===== -->
+<!-- ============================================ -->
+<section id="admin" class="admin-section">
+  <div id="loginBox">
+    <h2 style="font-size:1.7rem;margin-bottom:24px;">Entrar no Painel</h2>
+    <form id="loginForm">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" required>
+      
+      <label for="loginSenha">Palavra-passe</label>
+      <input type="password" id="loginSenha" required>
+      
+      <button type="submit">Entrar</button>
+      <p id="loginFeedback" class="feedback"></p>
+    </form>
+  </div>
 
-  // ============================================
-  // CONFIGURAÇÃO SUPABASE
-  // ============================================
+  <div id="painelBox" style="display:none;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;">
+      <h2 style="font-size:1.5rem;">Painel do Autor</h2>
+      <button id="logoutBtn" class="btn-sair">Sair</button>
+    </div>
+
+    <!-- Publicar Livro -->
+    <h3 style="font-size:1.15rem;margin-bottom:16px;">📚 Publicar Livro</h3>
+    <form id="livroForm">
+      <label for="lTitulo">Título *</label>
+      <input type="text" id="lTitulo" required>
+      
+      <label for="lSubtitulo">Subtítulo</label>
+      <input type="text" id="lSubtitulo">
+      
+      <label for="lAno">Ano de publicação</label>
+      <input type="text" id="lAno" placeholder="2026">
+      
+      <label for="lGenero">Género</label>
+      <input type="text" id="lGenero" placeholder="Poesia, Ficção, Ensaio...">
+      
+      <label for="lSinopse">Sinopse</label>
+      <textarea id="lSinopse" rows="3"></textarea>
+      
+      <label for="lCapa">Link da capa (imagem, opcional)</label>
+      <input type="text" id="lCapa" placeholder="https://...jpg">
+      
+      <label for="lPdf">Link do PDF *</label>
+      <input type="text" id="lPdf" placeholder="https://...pdf" required>
+      
+      <button type="submit">Publicar Livro</button>
+      <p id="livroFeedback" class="feedback"></p>
+    </form>
+
+    <!-- Lista de Livros -->
+    <h3 style="font-size:1.05rem;margin:36px 0 14px;">Livros publicados</h3>
+    <div id="listaLivros">
+      <p style="font-size:.9rem;color:#888;">A carregar...</p>
+    </div>
+
+    <!-- Publicar Artigo -->
+    <h3 style="font-size:1.15rem;margin:52px 0 16px;">✍️ Publicar Artigo</h3>
+    <form id="artigoForm">
+      <label for="aTitulo">Título *</label>
+      <input type="text" id="aTitulo" required>
+      
+      <label for="aSubtitulo">Subtítulo</label>
+      <input type="text" id="aSubtitulo">
+      
+      <label for="aResumo">Resumo</label>
+      <textarea id="aResumo" rows="3"></textarea>
+      
+      <label for="aPdf">Link do PDF *</label>
+      <input type="text" id="aPdf" placeholder="https://...pdf" required>
+      
+      <button type="submit">Publicar Artigo</button>
+      <p id="artigoFeedback" class="feedback"></p>
+    </form>
+
+    <!-- Lista de Artigos -->
+    <h3 style="font-size:1.05rem;margin:36px 0 14px;">Artigos publicados</h3>
+    <div id="listaArtigos">
+      <p style="font-size:.9rem;color:#888;">A carregar...</p>
+    </div>
+  </div>
+</section>
+  /* Estilos para o painel administrativo */
+.admin-section {
+  padding: 60px 20px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.admin-section input,
+.admin-section textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.admin-section label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 16px;
+  display: block;
+}
+.admin-section button[type="submit"] {
+  margin-top: 22px;
+  padding: 14px 32px;
+  background: #b03a2e;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.admin-section button[type="submit"]:hover {
+  opacity: 0.9;
+}
+.btn-sair {
+  padding: 8px 18px;
+  font-size: 0.7rem;
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  cursor: pointer;
+}
+.btn-eliminar {
+  padding: 6px 14px;
+  font-size: 0.65rem;
+  background: transparent;
+  border: 1px solid #b03a2e;
+  color: #b03a2e;
+  cursor: pointer;
+}
+.btn-eliminar:hover {
+  background: #b03a2e;
+  color: #fff;
+}
+.item-lista {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  margin-bottom: 8px;
+}
+.feedback {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #b03a2e;
+}
+.feedback-sucesso {
+  color: #c9a96e !important;
+}
+  // ===== PAINEL ADMINISTRATIVO - SUPABASE =====
+try {
+  const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
+
   const SUPABASE_URL = 'https://uxvtewwealwtntnbyjyh.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_l79iQtPWsFQG2GKygQ7-dg_Wy2xQot6';
   const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  console.log('🚀 App inicializado com Supabase');
-
-  // ============================================
-  // ELEMENTOS DOM
-  // ============================================
-  const grid = document.getElementById('livrosSupabaseGrid');
-  const loginBox = document.getElementById('autorLoginBox');
-  const loginForm = document.getElementById('autorLoginForm');
-  const loginFeedback = document.getElementById('autorLoginFeedback');
-  const autorPanel = document.getElementById('autorPanel');
-  const logoutButton = document.getElementById('autorLogout');
-  const livroForm = document.getElementById('livroForm');
-  const livroFeedback = document.getElementById('livroFeedback');
-
-  // ============================================
-  // FUNÇÕES DE UI
-  // ============================================
-  function mostrarLoading(elemento, mensagem = 'Carregando...') {
-    elemento.innerHTML = `
-      <div style="text-align:center;grid-column:1/-1;padding:2rem;">
-        <div style="display:inline-block;width:40px;height:40px;border:4px solid var(--paper);border-top-color:var(--ink);border-radius:50%;animation:spin 0.8s linear infinite;"></div>
-        <p style="color:var(--ink-soft);margin-top:1rem;">${mensagem}</p>
-      </div>
-    `;
+  function gerarId(t) {
+    return t.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '') + '-' + Date.now().toString(36);
   }
 
-  function mostrarErro(elemento, mensagem) {
-    elemento.innerHTML = `
-      <p style="color:#a03d3d;text-align:center;grid-column:1/-1;padding:2rem;">
-        ⚠️ ${mensagem}
-      </p>
-    `;
-  }
+  async function carregarListasAdmin() {
+    const listaL = document.getElementById('listaLivros');
+    const listaA = document.getElementById('listaArtigos');
+    if (!listaL || !listaA) return;
 
-  function mostrarVazio(elemento, mensagem = 'Ainda não há livros adicionados aqui.') {
-    elemento.innerHTML = `
-      <p style="color:var(--ink-soft);text-align:center;grid-column:1/-1;padding:2rem;">
-        📚 ${mensagem}
-      </p>
-    `;
-  }
-
-  function mostrarFeedback(elemento, mensagem, tipo = 'info') {
-    const cores = {
-      sucesso: 'var(--ink)',
-      erro: '#a03d3d',
-      info: 'var(--ink-soft)'
-    };
-    elemento.textContent = mensagem;
-    elemento.style.color = cores[tipo] || cores.info;
-  }
-
-  // ============================================
-  // CARREGAR LIVROS
-  // ============================================
-  async function carregarLivros() {
-    console.log('📚 Carregando livros...');
-    mostrarLoading(grid);
-
-    try {
-      const { data, error } = await supabase
-        .from('livros')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('❌ Erro ao carregar:', error);
-        mostrarErro(grid, `Erro ao carregar: ${error.message}`);
-        return;
-      }
-
-      if (!data || data.length === 0) {
-        mostrarVazio(grid);
-        return;
-      }
-
-      console.log(`✅ ${data.length} livros carregados`);
-
-      grid.innerHTML = data.map(livro => `
-        <article class="book-item">
-          <div class="book-cover-3d">
-            <div class="cover-face" style="background:linear-gradient(160deg,var(--ink-soft),var(--charcoal));">
-              <span class="cover-title" style="font-size:1rem">${livro.titulo || 'Sem título'}</span>
-              ${livro.subtitulo ? `<span class="cover-sub">${livro.subtitulo}</span>` : ''}
-              <span class="cover-mark">Vida & Escritos</span>
-            </div>
-          </div>
-          <h3>${livro.titulo || 'Sem título'}</h3>
-          ${livro.subtitulo ? `<p class="book-subtitle">${livro.subtitulo}</p>` : ''}
-          ${livro.sinopse ? `<p class="book-desc">${livro.sinopse}</p>` : ''}
-          <div class="book-actions">
-            ${livro.pdfurl ? `
-              <a href="${livro.pdfurl}" target="_blank" class="btn btn-outline-ink">Ler</a>
-              <a href="${livro.pdfurl}" download class="btn btn-dark">Baixar</a>
-            ` : `
-              <span style="color:var(--ink-soft);font-size:.85rem;">PDF em breve</span>
-            `}
-          </div>
-        </article>
+    const { data: livros, error: eL } = await supabase.from('livros').select('*').order('created_at', { ascending: false });
+    if (eL) console.error('Erro ao carregar livros:', eL);
+    
+    listaL.innerHTML = !livros || livros.length === 0
+      ? '<p style="font-size:.9rem;color:#888;">Ainda não publicaste nenhum livro.</p>'
+      : livros.map(l => `
+        <div class="item-lista">
+          <span style="font-size:.9rem;">${l.titulo}${l.ano ? ' · ' + l.ano : ''}</span>
+          <button class="btn-eliminar" onclick="eliminarLivro('${l.id}')">Eliminar</button>
+        </div>
       `).join('');
 
-    } catch (err) {
-      console.error('❌ Erro inesperado:', err);
-      mostrarErro(grid, 'Erro inesperado ao carregar livros.');
-    }
+    const { data: artigos, error: eA } = await supabase.from('artigos').select('*').order('created_at', { ascending: false });
+    if (eA) console.error('Erro ao carregar artigos:', eA);
+    
+    listaA.innerHTML = !artigos || artigos.length === 0
+      ? '<p style="font-size:.9rem;color:#888;">Ainda não publicaste nenhum artigo.</p>'
+      : artigos.map(a => `
+        <div class="item-lista">
+          <span style="font-size:.9rem;">${a.titulo}</span>
+          <button class="btn-eliminar" onclick="eliminarArtigo('${a.id}')">Eliminar</button>
+        </div>
+      `).join('');
   }
 
-  // ============================================
-  // GERENCIAR ÁREA DO AUTOR
-  // ============================================
-  function mostrarAreaAutor(session) {
-    if (session) {
-      loginBox.style.display = 'none';
-      autorPanel.style.display = 'block';
-      console.log(`👤 Autor logado: ${session.user.email}`);
-    } else {
-      loginBox.style.display = 'block';
-      autorPanel.style.display = 'none';
-      console.log('👤 Nenhum autor logado');
+  window.eliminarLivro = async function(id) {
+    if (!confirm('Eliminar este livro definitivamente?')) return;
+    const { error } = await supabase.from('livros').delete().eq('id', id);
+    if (error) { alert('Erro ao eliminar. Confirma que estás autenticado.'); console.error(error); return; }
+    carregarListasAdmin();
+  };
+
+  window.eliminarArtigo = async function(id) {
+    if (!confirm('Eliminar este artigo definitivamente?')) return;
+    const { error } = await supabase.from('artigos').delete().eq('id', id);
+    if (error) { alert('Erro ao eliminar. Confirma que estás autenticado.'); console.error(error); return; }
+    carregarListasAdmin();
+  };
+
+  function configurarAdmin() {
+    const loginBox = document.getElementById('loginBox');
+    const painelBox = document.getElementById('painelBox');
+    const loginForm = document.getElementById('loginForm');
+    const loginFeedback = document.getElementById('loginFeedback');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    async function verificarEstado() {
+      const { data: { session } } = await supabase.auth.getSession();
+      loginBox.style.display = session ? 'none' : 'block';
+      painelBox.style.display = session ? 'block' : 'none';
+      if (session) carregarListasAdmin();
     }
+    verificarEstado();
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const senha = document.getElementById('loginSenha').value;
+      const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
+      if (error) { loginFeedback.textContent = 'Email ou palavra-passe incorretos.'; return; }
+      loginFeedback.textContent = '';
+      verificarEstado();
+    });
+
+    logoutBtn.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      verificarEstado();
+    });
+
+    document.getElementById('livroForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const titulo = document.getElementById('lTitulo').value.trim();
+      const pdf = document.getElementById('lPdf').value.trim();
+      const fb = document.getElementById('livroFeedback');
+      if (!titulo || !pdf) { fb.textContent = 'Título e link do PDF são obrigatórios.'; return; }
+      
+      const { error } = await supabase.from('livros').insert([{
+        id: gerarId(titulo),
+        titulo,
+        subtitulo: document.getElementById('lSubtitulo').value.trim(),
+        ano: document.getElementById('lAno').value.trim(),
+        genero: document.getElementById('lGenero').value.trim(),
+        sinopse: document.getElementById('lSinopse').value.trim(),
+        capaurl: document.getElementById('lCapa').value.trim(),
+        pdfurl: pdf
+      }]);
+      
+      if (error) { fb.textContent = 'Erro ao publicar. Confirma que estás autenticado.'; console.error(error); return; }
+      fb.className = 'feedback feedback-sucesso';
+      fb.textContent = `✅ "${titulo}" foi publicado com sucesso!`;
+      e.target.reset();
+      carregarListasAdmin();
+    });
+
+    document.getElementById('artigoForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const titulo = document.getElementById('aTitulo').value.trim();
+      const pdf = document.getElementById('aPdf').value.trim();
+      const fb = document.getElementById('artigoFeedback');
+      if (!titulo || !pdf) { fb.textContent = 'Título e link do PDF são obrigatórios.'; return; }
+      
+      const { error } = await supabase.from('artigos').insert([{
+        id: gerarId(titulo),
+        titulo,
+        subtitulo: document.getElementById('aSubtitulo').value.trim(),
+        resumo: document.getElementById('aResumo').value.trim(),
+        pdfurl: pdf
+      }]);
+      
+      if (error) { fb.textContent = 'Erro ao publicar. Confirma que estás autenticado.'; console.error(error); return; }
+      fb.className = 'feedback feedback-sucesso';
+      fb.textContent = `✅ "${titulo}" foi publicado com sucesso!`;
+      e.target.reset();
+      carregarListasAdmin();
+    });
   }
 
-  // ============================================
-  // VERIFICAR SESSÃO
-  // ============================================
-  async function verificarSessao() {
-    try {
-      const { data: { session }, error } = await supabase.auth.getSession();
-      
-      if (error) {
-        console.error('❌ Erro ao verificar sessão:', error);
-        mostrarAreaAutor(null);
-        return;
-      }
-      
-      mostrarAreaAutor(session);
-      
-    } catch (err) {
-      console.error('❌ Erro inesperado:', err);
-      mostrarAreaAutor(null);
-    }
-  }
+  document.addEventListener('DOMContentLoaded', configurarAdmin);
 
-  // ============================================
-  // LOGIN
-  // ============================================
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById('autorEmail').value.trim();
-    const password = document.getElementById('autorPassword').value;
-
-    console.log(`🔐 Tentando login: ${email}`);
-
-    mostrarFeedback(loginFeedback, '⏳ Verificando credenciais...', 'info');
-
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password
-      });
-
-      if (error) {
-        console.error('❌ Erro de login:', error);
-        mostrarFeedback(loginFeedback, `❌ ${error.message}`, 'erro');
-        return;
-      }
-
-      console.log('✅ Login bem-sucedido!');
-      mostrarFeedback(loginFeedback, '✅ Login realizado com sucesso!', 'sucesso');
-      
-      loginForm.reset();
-      
-      // Atualizar UI
-      await verificarSessao();
-      
-      // Limpar feedback após 3 segundos
-      setTimeout(() => {
-        if (loginFeedback) loginFeedback.textContent = '';
-      }, 3000);
-
-    } catch (err) {
-      console.error('❌ Erro inesperado:', err);
-      mostrarFeedback(loginFeedback, '❌ Erro inesperado. Tente novamente.', 'erro');
-    }
+} catch (err) {
+  console.error('Erro ao ligar ao Supabase:', err);
+  document.addEventListener('DOMContentLoaded', () => {
+    const listaL = document.getElementById('listaLivros');
+    const listaA = document.getElementById('listaArtigos');
+    if (listaL) listaL.innerHTML = '<p style="font-size:.9rem;color:#888;">Não foi possível ligar à base de dados.</p>';
+    if (listaA) listaA.innerHTML = '<p style="font-size:.9rem;color:#888;">Não foi possível ligar à base de dados.</p>';
   });
-
-  // ============================================
-  // LOGOUT
-  // ============================================
-  logoutButton.addEventListener('click', async () => {
-    if (confirm('Tem certeza que deseja sair da área do autor?')) {
-      try {
-        await supabase.auth.signOut();
-        console.log('👋 Usuário desconectado');
-        await verificarSessao();
-      } catch (err) {
-        console.error('❌ Erro ao sair:', err);
-        alert('Erro ao sair. Tente novamente.');
-      }
-    }
-  });
-
-  // ============================================
-  // PUBLICAR LIVRO
-  // ============================================
-  let isSubmitting = false;
-
-  livroForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    if (isSubmitting) {
-      mostrarFeedback(livroFeedback, '⏳ Aguarde, processando...', 'info');
-      return;
-    }
-
-    // Verificar sessão novamente
-    const { data: { session } } = await supabase.auth.getSession();
-    
-    if (!session) {
-      mostrarFeedback(livroFeedback, '⚠️ Você precisa estar logado para publicar.', 'erro');
-      return;
-    }
-
-    const titulo = document.getElementById('livroTitulo').value.trim();
-    const subtitulo = document.getElementById('livroSubtitulo').value.trim();
-    const sinopse = document.getElementById('livroSinopse').value.trim();
-    const pdfurl = document.getElementById('livroPdfUrl').value.trim();
-
-    // Validação
-    if (!titulo) {
-      mostrarFeedback(livroFeedback, '⚠️ O título é obrigatório.', 'erro');
-      return;
-    }
-
-    // Validar URL se fornecida
-    if (pdfurl) {
-      try {
-        new URL(pdfurl);
-      } catch {
-        mostrarFeedback(livroFeedback, '⚠️ URL do PDF inválida. Verifique o link.', 'erro');
-        return;
-      }
-    }
-
-    isSubmitting = true;
-    mostrarFeedback(livroFeedback, '⏳ Publicando livro...', 'info');
-
-    try {
-      const { error } = await supabase
-        .from('livros')
-        .insert([{ titulo, subtitulo, sinopse, pdfurl }]);
-
-      if (error) {
-        console.error('❌ Erro ao publicar:', error);
-        mostrarFeedback(livroFeedback, `❌ Erro: ${error.message}`, 'erro');
-        isSubmitting = false;
-        return;
-      }
-
-      console.log(`✅ Livro "${titulo}" publicado!`);
-      mostrarFeedback(livroFeedback, `✅ "${titulo}" foi publicado com sucesso!`, 'sucesso');
-      
-      livroForm.reset();
-      await carregarLivros();
-
-      // Limpar feedback após 4 segundos
-      setTimeout(() => {
-        if (livroFeedback) livroFeedback.textContent = '';
-      }, 4000);
-
-    } catch (err) {
-      console.error('❌ Erro inesperado:', err);
-      mostrarFeedback(livroFeedback, '❌ Erro inesperado. Tente novamente.', 'erro');
-    } finally {
-      isSubmitting = false;
-    }
-  });
-
-  // ============================================
-  // OUVIR MUDANÇAS DE AUTENTICAÇÃO
-  // ============================================
-  supabase.auth.onAuthStateChange((event, session) => {
-    console.log(`🔄 Evento de autenticação: ${event}`);
-    
-    if (event === 'SIGNED_IN') {
-      console.log('✅ Usuário entrou');
-      mostrarAreaAutor(session);
-    } else if (event === 'SIGNED_OUT') {
-      console.log('👋 Usuário saiu');
-      mostrarAreaAutor(null);
-    } else if (event === 'TOKEN_REFRESHED') {
-      console.log('🔄 Token atualizado');
-    }
-  });
-
-  // ============================================
-  // INICIALIZAÇÃO
-  // ============================================
-  console.log('🔄 Inicializando aplicação...');
-
-  // Verificar sessão ao carregar
-  await verificarSessao();
-
-  // Carregar livros
-  await carregarLivros();
-
-  console.log('✅ Aplicação pronta!');
-
-  // Adicionar estilos para animações
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
-    /* Feedback visual para login */
-    #autorLoginFeedback, #livroFeedback {
-      min-height: 1.5rem;
-      margin-top: 0.75rem;
-      transition: all 0.3s ease;
-    }
-    
-    /* Botão de logout */
-    #autorLogout {
-      cursor: pointer;
-    }
-    
-    /* Melhorar responsividade do painel do autor */
-    #autorPanel {
-      animation: fadeIn 0.3s ease;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  `;
-  document.head.appendChild(style);
-
-</script>
+}
