@@ -3,898 +3,2223 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vida & Escritos | Renato Nhachengo</title>
-<meta name="description" content="Vida & Escritos — Poeta e Escritor. Palavras que encontram significado entre a vida e o silêncio.">
+
+<title>Vida & Escritos | Biblioteca Digital</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-/* ===== VIDA & ESCRITOS — ESTILOS PRINCIPAIS ===== */
-:root{
-  --preto-literario:#1a1a1a;
-  --cinza-poetico:#2d2d2d;
-  --cinza-suave:#7f8c8d;
-  --fundo-quente:#faf8f5;
-  --fundo-quente-2:#f1ece1;
-  --vermelho-poetico:#b03a2e;
-  --dourado-suave:#c9a96e;
-  --azul-noturno:#2c3e50;
-  --linha:rgba(26,26,26,.12);
-  --font-titulo:'Playfair Display',serif;
-  --font-texto:'Lora',serif;
-  --font-citacao:'Crimson Text',serif;
-}
-[data-theme="dark"]{
-  --fundo-quente:var(--azul-noturno);
-  --fundo-quente-2:#25333f;
-  --preto-literario:#f5f1e8;
-  --cinza-poetico:#dcd6c8;
-  --cinza-suave:#a9b6bf;
-  --linha:rgba(245,241,232,.14);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--fundo-quente);color:var(--cinza-poetico);font-family:var(--font-texto);
-  font-size:1.125rem;line-height:1.75;transition:background .4s ease,color .4s ease}
-h1,h2,h3{font-family:var(--font-titulo);color:var(--preto-literario);font-weight:600}
-h1{font-size:3rem}
-h2{font-size:2.2rem}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.container{max-width:1140px;margin:0 auto;padding:0 24px}
-.eyebrow{display:block;font-family:var(--font-texto);text-transform:uppercase;letter-spacing:3px;
-  font-size:.75rem;color:var(--dourado-suave);margin-bottom:14px}
-.center{text-align:center}
-section{padding:100px 0}
-.section-alt{background:var(--fundo-quente-2)}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
-.reveal.visible{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+/* =========================================================
+   RESET
+========================================================= */
 
-/* HEADER / NAV */
-header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--fundo-quente) 92%,transparent);
-  backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;max-width:1140px;margin:0 auto}
-.logo{font-family:var(--font-titulo);font-size:1.15rem;letter-spacing:1.5px;color:var(--preto-literario);text-transform:uppercase}
-.nav-links{display:flex;list-style:none;gap:28px;align-items:center}
-.nav-links a{font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--cinza-suave);
-  padding-bottom:4px;border-bottom:1px solid transparent;transition:.3s}
-.nav-links a:hover,.nav-links a.ativo{color:var(--vermelho-poetico);border-bottom-color:var(--vermelho-poetico)}
-.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
-.menu-toggle span{width:24px;height:1.5px;background:var(--preto-literario)}
-.theme-toggle{background:none;border:1px solid var(--linha);border-radius:50%;width:38px;height:38px;
-  cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;color:var(--preto-literario)}
-
-/* BOTÕES */
-.btn{display:inline-block;padding:14px 32px;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;
-  border:1px solid currentColor;cursor:pointer;transition:.3s;font-family:var(--font-texto)}
-.btn-vermelho{background:var(--vermelho-poetico);border-color:var(--vermelho-poetico);color:#fff}
-.btn-vermelho:hover{background:transparent;color:var(--vermelho-poetico)}
-.btn-outline{background:transparent;color:var(--preto-literario);border-color:var(--preto-literario)}
-.btn-outline:hover{background:var(--preto-literario);color:var(--fundo-quente)}
-.btn-dourado{background:transparent;color:var(--dourado-suave);border-color:var(--dourado-suave)}
-.btn-dourado:hover{background:var(--dourado-suave);color:var(--preto-literario)}
-
-/* HERO */
-.hero{min-height:82vh;display:flex;align-items:center;justify-content:center;text-align:center;
-  position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background-color:#20211d;background-size:cover;background-position:center 42%}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,14,.4),rgba(20,18,14,.72) 60%,rgba(20,18,14,.85))}
-.hero-content{position:relative;z-index:2;color:#f5f1e8;padding:24px;max-width:720px}
-.hero .eyebrow{color:#e4d9bd}
-.hero h1{color:#f5f1e8;font-size:clamp(2.2rem,5.5vw,3.4rem);letter-spacing:1px;margin-bottom:18px}
-.hero .lead{font-family:var(--font-citacao);font-style:italic;font-size:1.3rem;margin-bottom:36px;line-height:1.6;color:#e9e3d3}
-.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-
-/* CARTÕES DE LIVRO / ARTIGO */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:48px}
-.livro-card{text-align:center}
-.capa{width:180px;height:260px;margin:0 auto 24px;position:relative;perspective:1100px}
-.capa-face{position:absolute;inset:0;border-radius:1px 6px 6px 1px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;padding:24px 18px;text-align:center;color:#f5f1e8;
-  box-shadow:22px 16px 40px -12px rgba(0,0,0,.45);transform:rotateY(-18deg);
-  transition:transform .4s cubic-bezier(.2,.8,.2,1)}
-.capa:hover .capa-face{transform:rotateY(-6deg) translateY(-6px)}
-.capa-titulo{font-family:var(--font-titulo);font-size:1.1rem;font-weight:600;line-height:1.3}
-.capa-sub{font-family:var(--font-texto);font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;opacity:.75;margin-top:10px}
-.capa-marca{font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;opacity:.6;margin-top:auto;padding-top:16px}
-.livro-card h3{font-size:1.2rem;margin-bottom:6px}
-.livro-meta{font-size:.78rem;letter-spacing:1px;text-transform:uppercase;color:var(--dourado-suave);margin-bottom:10px}
-.livro-desc{color:var(--cinza-suave);font-style:italic;font-size:.92rem;margin-bottom:20px}
-.card-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-
-.artigo-card{background:var(--fundo-quente);border:1px solid var(--linha);padding:32px;transition:.3s}
-.artigo-card:hover{border-color:var(--dourado-suave)}
-.artigo-card .data{font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--vermelho-poetico);margin-bottom:10px}
-.artigo-card h3{font-size:1.3rem;margin-bottom:10px}
-.artigo-card p{color:var(--cinza-suave);margin-bottom:16px}
-.tag{display:inline-block;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--cinza-suave);
-  border:1px solid var(--linha);padding:4px 10px;margin:0 6px 6px 0}
-
-/* FRAGMENTOS — grid tipo Pinterest */
-.fragmentos-grid{column-count:3;column-gap:28px}
-.fragmento-card{break-inside:avoid;margin-bottom:28px;background:var(--fundo-quente-2);border-left:3px solid var(--dourado-suave);
-  padding:32px 28px}
-.fragmento-card blockquote{font-family:var(--font-citacao);font-style:italic;font-size:1.2rem;line-height:1.6;color:var(--preto-literario)}
-.fragmento-card cite{display:block;margin-top:18px;font-style:normal;font-size:.72rem;text-transform:uppercase;
-  letter-spacing:1.5px;color:var(--vermelho-poetico)}
-@media(max-width:900px){.fragmentos-grid{column-count:2}}
-@media(max-width:600px){.fragmentos-grid{column-count:1}}
-
-/* GALERIA */
-.galeria-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.galeria-item{position:relative;aspect-ratio:1/1;overflow:hidden}
-.galeria-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.galeria-item:hover img{transform:scale(1.06)}
-.galeria-legenda{position:absolute;left:0;right:0;bottom:0;padding:18px;background:linear-gradient(0deg,rgba(0,0,0,.65),transparent);
-  color:#f5f1e8;font-family:var(--font-citacao);font-style:italic;font-size:.9rem;opacity:0;transition:.3s}
-.galeria-item:hover .galeria-legenda{opacity:1}
-@media(max-width:768px){.galeria-grid{grid-template-columns:repeat(2,1fr)}}
-
-/* FORMULÁRIOS */
-.form{display:flex;flex-direction:column;gap:6px;max-width:560px}
-.form label{font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--dourado-suave);margin-top:16px}
-.form input,.form select,.form textarea{background:var(--fundo-quente);border:1px solid var(--linha);
-  padding:13px 14px;color:var(--preto-literario);font-family:var(--font-texto);font-size:1rem}
-.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--vermelho-poetico)}
-.form button{margin-top:22px;align-self:flex-start}
-.form-feedback{margin-top:14px;font-size:.9rem;font-style:italic;color:var(--vermelho-poetico)}
-
-/* LIVRO / ARTIGO INDIVIDUAL */
-.split{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
-.ficha-tecnica{list-style:none;margin:24px 0;border-top:1px solid var(--linha)}
-.ficha-tecnica li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--linha);font-size:.95rem}
-.ficha-tecnica strong{color:var(--preto-literario)}
-.excerto-box{background:var(--fundo-quente-2);border-left:3px solid var(--vermelho-poetico);padding:28px 32px;margin:28px 0}
-.excerto-box blockquote{font-family:var(--font-citacao);font-style:italic;font-size:1.15rem;line-height:1.7}
-.artigo-corpo{max-width:720px;margin:0 auto;font-size:1.1rem}
-.artigo-corpo p{margin-bottom:22px}
-.artigo-corpo blockquote{font-family:var(--font-citacao);font-style:italic;font-size:1.2rem;border-left:3px solid var(--dourado-suave);
-  padding-left:24px;margin:30px 0;color:var(--preto-literario)}
-.partilha{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
-.partilha a{border:1px solid var(--linha);padding:8px 16px;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
-.partilha a:hover{border-color:var(--vermelho-poetico);color:var(--vermelho-poetico)}
-
-/* NEWSLETTER */
-.newsletter{background:var(--preto-literario);color:#f5f1e8;text-align:center}
-.newsletter h2{color:#f5f1e8}
-.newsletter p{color:#c8c2b2;font-family:var(--font-citacao);font-style:italic;margin-bottom:30px}
-.newsletter-form{display:flex;gap:12px;justify-content:center;max-width:440px;margin:0 auto;flex-wrap:wrap}
-.newsletter-form input{flex:1;min-width:200px;padding:14px 16px;border:1px solid rgba(245,241,232,.3);background:transparent;color:#f5f1e8}
-.newsletter-form input::placeholder{color:#a9a291}
-
-/* FOOTER */
-footer{background:var(--fundo-quente-2);border-top:1px solid var(--linha);text-align:center;padding:60px 24px 34px}
-.footer-logo{font-family:var(--font-titulo);font-size:1.2rem;color:var(--preto-literario);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
-.footer-nav,.footer-social{list-style:none;display:flex;justify-content:center;gap:24px;margin:20px 0;flex-wrap:wrap;font-size:.82rem;text-transform:uppercase;letter-spacing:.5px}
-.footer-nav a,.footer-social a{color:var(--cinza-suave)}
-.footer-nav a:hover,.footer-social a:hover{color:var(--vermelho-poetico)}
-.copyright{font-size:.78rem;opacity:.6;margin-top:24px}
-
-/* ===== ESTILOS DO PAINEL ADMINISTRATIVO ===== */
-.admin-section {
-  padding: 60px 20px;
-  max-width: 640px;
-  margin: 0 auto;
-  border-top: 4px solid var(--dourado-suave);
-}
-.admin-section input,
-.admin-section textarea {
-  width: 100%;
-  padding: 13px 14px;
-  border: 1px solid var(--linha);
-  font-size: 1rem;
-  font-family: inherit;
-  box-sizing: border-box;
-  background: var(--fundo-quente);
-  color: var(--preto-literario);
-}
-.admin-section label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-top: 16px;
-  display: block;
-  color: var(--dourado-suave);
-}
-.admin-section button[type="submit"] {
-  margin-top: 22px;
-  padding: 14px 32px;
-  background: var(--vermelho-poetico);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-family: var(--font-texto);
-}
-.admin-section button[type="submit"]:hover {
-  opacity: 0.85;
-  transform: scale(1.02);
-  transition: all 0.3s ease;
-}
-.btn-sair {
-  padding: 8px 18px;
-  font-size: 0.7rem;
-  background: transparent;
-  border: 1px solid var(--preto-literario);
-  cursor: pointer;
-  color: var(--preto-literario);
-  font-family: var(--font-texto);
-}
-.btn-sair:hover {
-  background: var(--preto-literario);
-  color: var(--fundo-quente);
-}
-.btn-eliminar {
-  padding: 6px 14px;
-  font-size: 0.65rem;
-  background: transparent;
-  border: 1px solid var(--vermelho-poetico);
-  color: var(--vermelho-poetico);
-  cursor: pointer;
-  font-family: var(--font-texto);
-}
-.btn-eliminar:hover {
-  background: var(--vermelho-poetico);
-  color: #fff;
-}
-.item-lista {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 14px;
-  border: 1px solid var(--linha);
-  background: var(--fundo-quente-2);
-  margin-bottom: 8px;
-  border-radius: 4px;
-}
-.feedback {
-  margin-top: 14px;
-  font-size: 0.9rem;
-  font-style: italic;
-  color: var(--vermelho-poetico);
-}
-.feedback-sucesso {
-  color: var(--dourado-suave) !important;
-}
-.painel-status {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.painel-status.logado {
-  background: #27ae60;
-  color: #fff;
-}
-.painel-status.deslogado {
-  background: #e74c3c;
-  color: #fff;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-@media(max-width:900px){.split{grid-template-columns:1fr}}
-@media(max-width:768px){
-  .menu-toggle{display:flex}
-  .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--fundo-quente);flex-direction:column;
-    align-items:center;gap:18px;padding:24px 0;border-bottom:1px solid var(--linha);display:none}
-  .nav-links.open{display:flex}
-  section{padding:70px 0}
-  h1{font-size:2.2rem}
-  .galeria-grid{grid-template-columns:1fr}
+html {
+    scroll-behavior: smooth;
 }
 
-.modal-overlay{position:fixed;inset:0;background:rgba(20,18,14,.75);z-index:200;display:none;
-  align-items:center;justify-content:center;padding:24px}
-.modal-overlay.aberto{display:flex}
-.modal-box{background:var(--fundo-quente);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;
-  padding:44px 40px;position:relative;box-shadow:0 40px 80px rgba(0,0,0,.4)}
-.modal-fechar{position:absolute;top:16px;right:20px;background:none;border:none;font-size:1.6rem;
-  cursor:pointer;color:var(--cinza-suave);line-height:1}
+body {
+    background: #080604;
+    color: #eadfc9;
+    font-family: "Cormorant Garamond", serif;
+    overflow-x: hidden;
+}
+
+button,
+a {
+    font-family: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   LUZ AMBIENTE
+========================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 35%,
+            rgba(184, 137, 63, .16),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 15% 55%,
+            rgba(145, 92, 32, .10),
+            transparent 30%
+        ),
+        radial-gradient(
+            ellipse at 85% 55%,
+            rgba(145, 92, 32, .10),
+            transparent 30%
+        );
+
+    z-index: 100;
+}
+
+
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
+
+#dust {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 101;
+}
+
+.dust {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+
+    background: rgba(231, 202, 146, .5);
+
+    animation: dustFloat linear infinite;
+}
+
+@keyframes dustFloat {
+
+    from {
+        transform: translateY(20vh);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: .7;
+    }
+
+    70% {
+        opacity: .4;
+    }
+
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    background: rgba(7, 5, 3, .72);
+
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(180, 135, 65, .18);
+
+    z-index: 1000;
+}
+
+.brand {
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand img {
+
+    width: 50px;
+    height: 50px;
+
+    object-fit: contain;
+
+    background: white;
+
+    border-radius: 50%;
+}
+
+.brand span {
+
+    font-family: "Cinzel", serif;
+
+    font-size: 15px;
+
+    letter-spacing: 3px;
+
+    color: #d9b777;
+}
+
+.nav-links {
+
+    display: flex;
+
+    gap: 30px;
+}
+
+.nav-links a {
+
+    font-family: "Cinzel", serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #c7b99e;
+
+    transition: .3s;
+}
+
+.nav-links a:hover {
+
+    color: #e2bf7c;
+}
+
+
+/* =========================================================
+   HERO / BIBLIOTECA
+========================================================= */
+
+.library-room {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background:
+
+        /* teto */
+        linear-gradient(
+            to bottom,
+            #090705 0%,
+            #15100a 10%,
+            transparent 25%
+        ),
+
+        /* luz central */
+        radial-gradient(
+            ellipse at 50% 43%,
+            rgba(177, 128, 53, .24),
+            transparent 45%
+        ),
+
+        /* chão */
+        linear-gradient(
+            to bottom,
+            transparent 65%,
+            #0a0704 66%,
+            #1b1008 82%,
+            #070504 100%
+        ),
+
+        #100b07;
+
+    perspective: 1200px;
+}
+
+
+/* =========================================================
+   PAREDES DA BIBLIOTECA
+========================================================= */
+
+.back-wall {
+
+    position: absolute;
+
+    inset: 78px 0 0;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #080604 0%,
+            #1b1109 18%,
+            #24170c 50%,
+            #1b1109 82%,
+            #080604 100%
+        );
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   ESTANTES LATERAIS
+========================================================= */
+
+.bookcase {
+
+    position: absolute;
+
+    top: 100px;
+
+    width: 23%;
+
+    height: 75vh;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #090604,
+            #29170a 15%,
+            #422712 50%,
+            #241309 85%,
+            #070403
+        );
+
+    border: 12px solid #100905;
+
+    box-shadow:
+
+        inset 0 0 30px rgba(0,0,0,.8),
+
+        0 25px 50px rgba(0,0,0,.8);
+
+    z-index: 4;
+}
+
+.bookcase.left {
+    left: 2%;
+}
+
+.bookcase.right {
+    right: 2%;
+}
+
+.shelf-row {
+
+    height: 25%;
+
+    padding: 18px 12px 12px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    border-bottom: 14px solid #100905;
+
+    box-shadow:
+        0 5px 8px rgba(0,0,0,.7);
+}
+
+
+/* =========================================================
+   LIVROS DECORATIVOS
+========================================================= */
+
+.fake-book {
+
+    width: 20px;
+
+    height: 100px;
+
+    border-radius: 1px 3px 3px 1px;
+
+    box-shadow: 3px 0 5px rgba(0,0,0,.6);
+
+    transition: .3s;
+}
+
+.fake-book:hover {
+    transform: translateY(-10px);
+}
+
+.tall {
+    height: 125px;
+}
+
+.short {
+    height: 75px;
+}
+
+
+/* =========================================================
+   CÓDIGO DE CORES DOS LIVROS DECORATIVOS
+========================================================= */
+
+.b1 { background:#47321c; }
+.b2 { background:#202c29; }
+.b3 { background:#54251c; }
+.b4 { background:#6d5630; }
+.b5 { background:#26352b; }
+.b6 { background:#38231b; }
+.b7 { background:#76613b; }
+.b8 { background:#263d48; }
+.b9 { background:#4a3022; }
+.b10 { background:#574126; }
+
+
+/* =========================================================
+   LUMINÁRIA
+========================================================= */
+
+.lamp {
+
+    position: absolute;
+
+    top: 120px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 90px;
+
+    height: 75px;
+
+    background:
+
+        radial-gradient(
+            ellipse at center,
+            #f5d78d,
+            #b98232 60%,
+            #5c3713 100%
+        );
+
+    border-radius: 50% 50% 15% 15%;
+
+    box-shadow:
+
+        0 0 25px rgba(238,190,96,.5),
+
+        0 0 80px rgba(204,143,45,.28);
+
+    z-index: 8;
+}
+
+.lamp::before {
+
+    content:"";
+
+    position:absolute;
+
+    width: 5px;
+    height: 90px;
+
+    background:#3a2614;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    top:-75px;
+}
+
+
+/* =========================================================
+   LUZ DO CANDEEIRO
+========================================================= */
+
+.lamp-light {
+
+    position:absolute;
+
+    top: 150px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width: 550px;
+
+    height: 480px;
+
+    background:
+
+        radial-gradient(
+            ellipse,
+            rgba(234,184,86,.18),
+            rgba(234,184,86,.06) 40%,
+            transparent 70%
+        );
+
+    filter: blur(10px);
+
+    z-index:3;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   CENTRO DA BIBLIOTECA
+========================================================= */
+
+.center {
+
+    position: relative;
+
+    z-index: 10;
+
+    min-height: 100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:
+
+        130px 28% 130px;
+
+}
+
+
+/* =========================================================
+   CONTEÚDO CENTRAL
+========================================================= */
+
+.hero-content {
+
+    max-width: 760px;
+
+    padding: 60px 30px;
+
+    background:
+
+        radial-gradient(
+            ellipse,
+            rgba(25,16,8,.66),
+            transparent 75%
+        );
+}
+
+.hero-small {
+
+    font-family:"Cinzel", serif;
+
+    font-size:11px;
+
+    letter-spacing:6px;
+
+    color:#b98b4c;
+
+    margin-bottom:25px;
+}
+
+.hero-title {
+
+    font-family:"Cinzel", serif;
+
+    font-weight:500;
+
+    font-size:clamp(42px,6vw,82px);
+
+    letter-spacing:7px;
+
+    color:#e7d2a5;
+
+    text-shadow:
+
+        0 5px 30px #000,
+
+        0 0 30px rgba(205,159,77,.12);
+}
+
+.hero-title span {
+
+    color:#a97935;
+}
+
+.hero-description {
+
+    max-width:620px;
+
+    margin:28px auto;
+
+    font-size:21px;
+
+    line-height:1.7;
+
+    color:#bfb3a0;
+}
+
+.enter-button {
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:16px 35px;
+
+    border:1px solid #a67b3e;
+
+    font-family:"Cinzel", serif;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
+    color:#d9bb82;
+
+    transition:.4s;
+
+}
+
+.enter-button:hover {
+
+    background:#a67b3e;
+
+    color:#090604;
+
+    box-shadow:0 0 35px rgba(188,141,58,.25);
+}
+
+
+/* =========================================================
+   MESA DE ESCRITOR
+========================================================= */
+
+.writer-desk {
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:-35px;
+
+    transform:translateX(-50%);
+
+    width:55%;
+
+    height:110px;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #4a2912,
+            #1a0d06
+        );
+
+    border-radius:50% 50% 0 0;
+
+    box-shadow:
+
+        0 -10px 30px rgba(0,0,0,.5),
+
+        inset 0 8px 15px rgba(255,193,92,.08);
+
+    z-index:12;
+}
+
+.writer-desk::after {
+
+    content:"";
+
+    position:absolute;
+
+    width:70%;
+
+    height:200px;
+
+    left:15%;
+
+    top:70px;
+
+    background:#130a05;
+
+    transform:perspective(300px) rotateX(-15deg);
+
+    z-index:-1;
+}
+
+
+/* =========================================================
+   LIVRO CENTRAL
+========================================================= */
+
+.featured-book {
+
+    position:absolute;
+
+    bottom:35px;
+
+    left:50%;
+
+    transform:translateX(-50%) rotateX(4deg);
+
+    width:145px;
+
+    height:215px;
+
+    z-index:20;
+
+    cursor:pointer;
+
+    transition:.5s;
+}
+
+.featured-book:hover {
+
+    transform:
+        translateX(-50%)
+        translateY(-15px)
+        rotateX(4deg)
+        rotateY(-8deg)
+        scale(1.04);
+}
+
+.featured-book img {
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    box-shadow:
+
+        0 20px 30px rgba(0,0,0,.8),
+
+        0 0 20px rgba(0,0,0,.4);
+}
+
+
+/* =========================================================
+   SEÇÃO DE LIVROS
+========================================================= */
+
+.collection {
+
+    position:relative;
+
+    padding:110px 7%;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #0c0805,
+            #181008 30%,
+            #0b0704
+        );
+}
+
+.section-heading {
+
+    text-align:center;
+
+    margin-bottom:65px;
+}
+
+.section-heading small {
+
+    font-family:"Cinzel", serif;
+
+    font-size:11px;
+
+    letter-spacing:5px;
+
+    color:#a8793b;
+}
+
+.section-heading h2 {
+
+    margin-top:12px;
+
+    font-family:"Cinzel", serif;
+
+    font-size:42px;
+
+    font-weight:500;
+
+    color:#e0c48b;
+}
+
+.section-heading p {
+
+    margin-top:12px;
+
+    font-size:19px;
+
+    color:#988d7b;
+}
+
+
+/* =========================================================
+   ESTANTE PRINCIPAL
+========================================================= */
+
+.main-shelf {
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:55px 45px 35px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #201107,
+            #412510,
+            #241308
+        );
+
+    border:14px solid #110805;
+
+    box-shadow:
+
+        inset 0 0 35px #000,
+
+        0 25px 70px rgba(0,0,0,.7);
+}
+
+.books {
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:35px;
+
+    padding-bottom:25px;
+
+    border-bottom:18px solid #120805;
+}
+
+
+/* =========================================================
+   CAPAS DOS LIVROS
+========================================================= */
+
+.book-card {
+
+    width:180px;
+
+    cursor:pointer;
+
+    position:relative;
+
+    transition:.5s;
+}
+
+.book-card:hover {
+
+    transform:
+        translateY(-20px)
+        rotateY(-6deg);
+}
+
+.book-card img {
+
+    width:100%;
+
+    height:270px;
+
+    object-fit:cover;
+
+    display:block;
+
+    box-shadow:
+
+        7px 8px 16px rgba(0,0,0,.8),
+
+        -2px 0 5px rgba(255,255,255,.08);
+}
+
+.book-name {
+
+    margin-top:15px;
+
+    text-align:center;
+
+    font-family:"Cinzel", serif;
+
+    font-size:13px;
+
+    color:#cdb27c;
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   CITAÇÃO
+========================================================= */
+
+.quote-section {
+
+    min-height:450px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:80px 20px;
+
+    background:
+
+        radial-gradient(
+            ellipse at center,
+            rgba(139,94,36,.18),
+            transparent 65%
+        );
+
+}
+
+.quote {
+
+    max-width:850px;
+}
+
+.quote-symbol {
+
+    font-family:Georgia,serif;
+
+    font-size:100px;
+
+    color:#765326;
+
+    line-height:.5;
+}
+
+.quote p {
+
+    font-size:38px;
+
+    font-style:italic;
+
+    line-height:1.4;
+
+    color:#d8c7a8;
+}
+
+.quote span {
+
+    display:block;
+
+    margin-top:25px;
+
+    font-family:"Cinzel",serif;
+
+    font-size:11px;
+
+    letter-spacing:4px;
+
+    color:#a87d40;
+}
+
+
+/* =========================================================
+   AUTOR
+========================================================= */
+
+.author {
+
+    padding:110px 8%;
+
+    background:#090604;
+}
+
+.author-box {
+
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:300px 1fr;
+
+    gap:65px;
+
+    align-items:center;
+}
+
+.author-emblem {
+
+    height:350px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:1px solid rgba(169,126,62,.25);
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(163,118,54,.13),
+            transparent 65%
+        );
+}
+
+.author-emblem span {
+
+    font-size:130px;
+
+    color:#a87c3e;
+}
+
+.author-text h2 {
+
+    font-family:"Cinzel",serif;
+
+    font-size:38px;
+
+    font-weight:500;
+
+    color:#dec18a;
+
+    margin-bottom:20px;
+}
+
+.author-text p {
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    color:#aaa091;
+
+    margin-bottom:15px;
+}
+
+
+/* =========================================================
+   ESCRITOS
+========================================================= */
+
+.writings {
+
+    padding:100px 7%;
+
+    background:#120c07;
+}
+
+.writing-grid {
+
+    max-width:1050px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+}
+
+.writing-card {
+
+    padding:35px;
+
+    min-height:230px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #211309,
+            #0f0905
+        );
+
+    border:1px solid rgba(170,125,58,.22);
+
+    transition:.4s;
+}
+
+.writing-card:hover {
+
+    transform:translateY(-8px);
+
+    border-color:#9c7138;
+}
+
+.writing-icon {
+
+    font-size:34px;
+
+    color:#ad8244;
+}
+
+.writing-card h3 {
+
+    margin:18px 0 10px;
+
+    font-family:"Cinzel",serif;
+
+    color:#d4b77d;
+}
+
+.writing-card p {
+
+    font-size:18px;
+
+    line-height:1.6;
+
+    color:#9f9587;
+}
+
+
+/* =========================================================
+   CONTACTO
+========================================================= */
+
+.contact {
+
+    text-align:center;
+
+    padding:100px 20px;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(125,83,30,.17),
+            transparent 65%
+        );
+}
+
+.contact h2 {
+
+    font-family:"Cinzel",serif;
+
+    font-size:40px;
+
+    color:#dfc48d;
+}
+
+.contact p {
+
+    max-width:650px;
+
+    margin:20px auto;
+
+    font-size:20px;
+
+    line-height:1.6;
+
+    color:#a79c8d;
+}
+
+.contact-button {
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:15px 32px;
+
+    border:1px solid #a57a3e;
+
+    color:#d8bb81;
+
+    font-family:"Cinzel",serif;
+
+    letter-spacing:2px;
+}
+
+.contact-button:hover {
+
+    background:#a57a3e;
+
+    color:#090604;
+}
+
+
+/* =========================================================
+   RODAPÉ
+========================================================= */
+
+footer {
+
+    padding:50px 20px;
+
+    text-align:center;
+
+    background:#050403;
+
+    border-top:1px solid rgba(171,126,59,.2);
+}
+
+footer img {
+
+    width:80px;
+
+    background:white;
+
+    border-radius:50%;
+
+    margin-bottom:15px;
+}
+
+footer h3 {
+
+    font-family:"Cinzel",serif;
+
+    letter-spacing:4px;
+
+    color:#ae8244;
+}
+
+footer p {
+
+    margin-top:8px;
+
+    color:#70685d;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:25px;
+
+    background:rgba(0,0,0,.9);
+
+    backdrop-filter:blur(10px);
+
+    z-index:5000;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.4s;
+}
+
+.modal.active {
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+.modal-box {
+
+    position:relative;
+
+    width:min(850px,100%);
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    display:grid;
+
+    grid-template-columns:250px 1fr;
+
+    gap:40px;
+
+    padding:45px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #25170c,
+            #0e0905
+        );
+
+    border:1px solid #74562b;
+
+    box-shadow:0 30px 100px #000;
+}
+
+.modal-box img {
+
+    width:100%;
+
+    box-shadow:0 15px 30px #000;
+}
+
+.modal-text h2 {
+
+    font-family:"Cinzel",serif;
+
+    color:#e0c38b;
+
+    font-size:30px;
+}
+
+.modal-text p {
+
+    margin-top:20px;
+
+    font-size:20px;
+
+    line-height:1.7;
+
+    color:#b1a696;
+}
+
+.read-btn {
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:13px 25px;
+
+    background:#a77c3e;
+
+    color:#080604;
+
+    font-family:"Cinzel",serif;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+}
+
+.close {
+
+    position:absolute;
+
+    top:12px;
+
+    right:18px;
+
+    border:none;
+
+    background:none;
+
+    color:#d1b57d;
+
+    font-size:32px;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media(max-width:1000px) {
+
+    .bookcase {
+        opacity:.35;
+        width:30%;
+    }
+
+    .center {
+        padding-left:15%;
+        padding-right:15%;
+    }
+
+    .writing-grid {
+        grid-template-columns:1fr;
+    }
+
+    .author-box {
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:700px) {
+
+    .nav-links {
+        display:none;
+    }
+
+    .brand span {
+        font-size:12px;
+    }
+
+    .bookcase {
+        display:none;
+    }
+
+    .center {
+        padding:130px 25px 220px;
+    }
+
+    .hero-title {
+        font-size:40px;
+        letter-spacing:3px;
+    }
+
+    .hero-description {
+        font-size:18px;
+    }
+
+    .writer-desk {
+        width:90%;
+    }
+
+    .featured-book {
+        width:115px;
+        height:175px;
+    }
+
+    .books {
+        gap:22px;
+    }
+
+    .book-card {
+        width:135px;
+    }
+
+    .book-card img {
+        height:205px;
+    }
+
+    .modal-box {
+        grid-template-columns:1fr;
+        padding:35px 25px;
+    }
+
+    .modal-box img {
+        max-width:220px;
+        margin:auto;
+    }
+
+    .quote p {
+        font-size:28px;
+    }
+
+}
+
 </style>
 </head>
+
+
 <body>
-<header>
-  <nav>
-    <a href="#inicio" class="logo">Vida & Escritos</a>
-    <div style="display:flex;align-items:center;gap:16px">
-      <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo noturno">🌙</button>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
-    </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#inicio">Início</a></li>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#biblioteca">Biblioteca</a></li>
-      <li><a href="#artigos">Artigos</a></li>
-      <li><a href="#fragmentos">Fragmentos</a></li>
-      <li><a href="#galeria">Galeria</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-      <li><a href="#admin">Painel</a></li>
-    </ul>
-  </nav>
+
+
+<!-- =========================================================
+     PARTÍCULAS
+========================================================= -->
+
+<div id="dust"></div>
+
+
+<!-- =========================================================
+     MENU
+========================================================= -->
+
+<header class="navbar">
+
+    <a href="#inicio" class="brand">
+
+        <img src="logo.png" alt="Vida & Escritos">
+
+        <span>
+            VIDA & ESCRITOS
+        </span>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="#inicio">INÍCIO</a>
+
+        <a href="#biblioteca">BIBLIOTECA</a>
+
+        <a href="#escritos">ESCRITOS</a>
+
+        <a href="#autor">AUTOR</a>
+
+        <a href="#contacto">CONTACTO</a>
+
+    </nav>
+
 </header>
-<main>
-<section id="inicio" class="hero">
-  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1635409565052-65ff2fcd0eea?q=70&w=1600&auto=format&fit=crop')"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <span class="eyebrow">Bem-vindo ao universo literário</span>
-    <h1>VIDA & ESCRITOS</h1>
-    <p class="lead">"Palavras que encontram significado entre a vida e o silêncio."</p>
-    <div class="hero-actions">
-      <a href="#biblioteca" class="btn btn-vermelho">Explorar os Livros</a>
-      <a href="#sobre" class="btn btn-outline" style="color:#f5f1e8;border-color:rgba(245,241,232,.6)">Entrar no Universo</a>
-    </div>
-  </div>
-</section>
-<section id="sobre">
-  <div class="container split">
-    <div class="reveal" style="aspect-ratio:4/5;background:url('https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;box-shadow:0 30px 60px -20px rgba(0,0,0,.35)"></div>
-    <div class="reveal">
-      <span class="eyebrow">O autor</span>
-      <h2>Entre a vida e aquilo que escrevo</h2>
-      <p style="color:var(--cinza-suave);margin-bottom:18px">Renato Nhachengo escreve como quem observa o mundo em silêncio antes de o nomear. A sua poesia nasce da memória, dos afetos por dizer e da liberdade de sentir sem pressa.</p>
-      <p style="color:var(--cinza-suave);margin-bottom:24px">Cada livro é uma paragem: um lugar onde a experiência humana, a saudade e a esperança encontram forma. Escrever é, para Renato, a maneira mais honesta de continuar a viver aquilo que já se viveu.</p>
-      <a href="#biblioteca" class="btn btn-dourado">Conhecer as obras</a>
-    </div>
-  </div>
-</section>
-<section id="biblioteca" class="section-alt">
-  <div class="container center">
-    <span class="eyebrow">A biblioteca</span>
-    <h2>Uma biblioteca digital</h2>
-    <p style="color:var(--cinza-suave);font-family:var(--font-citacao);font-style:italic;max-width:560px;margin:16px auto 0">Quatro obras, quatro travessias pela vida, pela memória e pelo silêncio.</p>
-    <div class="grid" id="livrosFixos" style="margin-top:64px"></div>
-  </div>
-</section>
 
-<section id="novos-livros">
-  <div class="container center">
-    <span class="eyebrow">Recém-chegados</span>
-    <h2>Novos Livros</h2>
-    <div class="grid" id="livrosSupabase" style="margin-top:56px">
-      <p style="color:var(--cinza-suave)">A carregar...</p>
-    </div>
-  </div>
-</section>
-<section id="artigos" class="section-alt">
-  <div class="container center">
-    <span class="eyebrow">Leitura livre</span>
-    <h2>Artigos</h2>
-    <p style="color:var(--cinza-suave);font-family:var(--font-citacao);font-style:italic;max-width:560px;margin:16px auto 0">Textos de reflexão, disponíveis para leitura online.</p>
-    <div class="grid" id="artigosFixos" style="margin-top:56px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))"></div>
-  </div>
-</section>
 
-<section id="novos-artigos">
-  <div class="container center">
-    <span class="eyebrow">Recém-chegados</span>
-    <h2>Novos Artigos</h2>
-    <div class="grid" id="artigosSupabase" style="margin-top:56px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
-      <p style="color:var(--cinza-suave)">A carregar...</p>
-    </div>
-  </div>
-</section>
-<section id="fragmentos">
-  <div class="container center">
-    <span class="eyebrow">Revista literária</span>
-    <h2>Palavras que ficaram</h2>
-    <p style="color:var(--cinza-suave);font-family:var(--font-citacao);font-style:italic;max-width:560px;margin:16px auto 40px">Fragmentos, pensamentos e pequenos excertos das obras.</p>
-  </div>
-  <div class="container">
-    <div class="fragmentos-grid">
-      <div class="fragmento-card reveal">
-        <blockquote>"Há noites que não foram feitas para dormir, mas para descobrir quem somos."</blockquote>
-        <cite>— Palavras Soltas</cite>
-      </div>
-      <div class="fragmento-card reveal">
-        <blockquote>"Tão belos são os teus encantos, e tão perfurantes são teus espinhos. O mundo é lindo, e você representa ele."</blockquote>
-        <cite>— Guerra das Flores, A Rosa Vermelha</cite>
-      </div>
-      <div class="fragmento-card reveal">
-        <blockquote>"Teus nomes são tuas raízes, africano."</blockquote>
-        <cite>— Teus Nomes São Tuas Raízes</cite>
-      </div>
-      <div class="fragmento-card reveal">
-        <blockquote>"Este é o grito delas, o grito que nasceu da tinta, sete tintas de amor que pintaram sangue e dor…"</blockquote>
-        <cite>— O Grito Delas</cite>
-      </div>
-      <div class="fragmento-card reveal">
-        <blockquote>"Ser africano é ser original, ser original é ser capaz de olhar para si como africano."</blockquote>
-        <cite>— Teus Nomes São Tuas Raízes</cite>
-      </div>
-      <div class="fragmento-card reveal">
-        <blockquote>"A diferença é o maior princípio do respeito mútuo."</blockquote>
-        <cite>— Guerra das Flores, A Rosa Vermelha</cite>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="galeria" class="section-alt">
-  <div class="container center">
-    <span class="eyebrow">Momentos contemplativos</span>
-    <h2>Galeria</h2>
-    <p style="color:var(--cinza-suave);font-family:var(--font-citacao);font-style:italic;max-width:560px;margin:16px auto 40px">A imagem também escreve aquilo que as palavras não conseguem dizer.</p>
-  </div>
-  <div class="container">
-    <div class="galeria-grid">
-      <div class="galeria-item reveal">
-        <img src="https://images.unsplash.com/photo-1759317700289-2f4be8f9b1db?q=80&w=900&auto=format&fit=crop" alt="Uma fileira de livros, uma vida de leitura." loading="lazy">
-        <div class="galeria-legenda">Uma fileira de livros, uma vida de leitura.</div>
-      </div>
-      <div class="galeria-item reveal">
-        <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=900&auto=format&fit=crop" alt="A tinta antes da palavra." loading="lazy">
-        <div class="galeria-legenda">A tinta antes da palavra.</div>
-      </div>
-      <div class="galeria-item reveal">
-        <img src="https://images.unsplash.com/photo-1640497186899-3f68570378ed?q=80&w=900&auto=format&fit=crop" alt="Uma página aberta é sempre um convite." loading="lazy">
-        <div class="galeria-legenda">Uma página aberta é sempre um convite.</div>
-      </div>
-      <div class="galeria-item reveal">
-        <img src="https://images.unsplash.com/photo-1780764818552-ec80ed39f841?q=80&w=900&auto=format&fit=crop" alt="A cidade também escreve à noite." loading="lazy">
-        <div class="galeria-legenda">A cidade também escreve à noite.</div>
-      </div>
-      <div class="galeria-item reveal">
-        <img src="https://images.unsplash.com/photo-1719588126773-2095e0d1e2ea?q=80&w=900&auto=format&fit=crop" alt="A mesa onde tudo começa." loading="lazy">
-        <div class="galeria-legenda">A mesa onde tudo começa.</div>
-      </div>
-      <div class="galeria-item reveal">
-        <img src="https://images.unsplash.com/photo-1635409565052-65ff2fcd0eea?q=80&w=900&auto=format&fit=crop" alt="Entre estantes e silêncios." loading="lazy">
-        <div class="galeria-legenda">Entre estantes e silêncios.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="contacto">
-  <div class="container split">
-    <form class="form" id="contactForm" novalidate>
-      <span class="eyebrow">Fale comigo</span>
-      <h2 style="font-size:2.1rem;margin-bottom:8px">Vamos conversar?</h2>
-      <p style="color:var(--cinza-suave);margin-bottom:8px">Fale sobre os livros, colaborações ou apenas para trocar palavras.</p>
-      <label for="nome">Nome</label>
-      <input type="text" id="nome" required>
-      <label for="email">Email</label>
-      <input type="email" id="email" required>
-      <label for="mensagem">Mensagem</label>
-      <textarea id="mensagem" rows="6" required></textarea>
-      <button type="submit" class="btn btn-vermelho">Enviar Mensagem</button>
-      <p id="formFeedback" class="form-feedback"></p>
-    </form>
-    <div>
-      <span class="eyebrow">Encontre-me</span>
-      <h2>Redes e contacto</h2>
-      <ul class="ficha-tecnica">
-        <li><span>WhatsApp</span> <strong><a href="#" target="_blank" rel="noopener">843 833 691</a></strong></li>
-        <li><span>Facebook</span> <strong><a href="#" target="_blank" rel="noopener">Renato Nhachengo</a></strong></li>
-        <li><span>Instagram</span> <strong><a href="#" target="_blank" rel="noopener">Renato Nhachengo</a></strong></li>
-        <li><span>Email</span> <strong><a href="#">mrenatoalizartino@gmail.com</a></strong></li>
-      </ul>
-      <a href="#" class="btn btn-outline">Fale comigo no WhatsApp</a>
-    </div>
-  </div>
-</section>
 
-<section class="newsletter">
-  <div class="container">
-    <h2>Fique por dentro dos novos escritos</h2>
-    <p>Receba aviso quando um novo livro, artigo ou fragmento for publicado.</p>
-    <form class="newsletter-form" id="newsletterForm">
-      <input type="email" placeholder="O seu email" required>
-      <button type="submit" class="btn btn-vermelho">Subscrever</button>
-    </form>
-    <p id="newsletterFeedback" class="form-feedback" style="color:#e4d9bd"></p>
-  </div>
-</section>
+<!-- =========================================================
+     SALA DA BIBLIOTECA
+========================================================= -->
 
-<!-- ============================================ -->
-<!-- ===== PAINEL ADMINISTRATIVO ===== -->
-<!-- ============================================ -->
-<section id="admin" class="admin-section">
-  <div id="loginBox">
-    <span class="eyebrow">🔐 Acesso restrito · Painel do autor</span>
-    <h2 style="font-size:1.7rem;margin-bottom:24px;">Entrar no painel</h2>
-    <p style="color:var(--cinza-suave);margin-bottom:20px;font-size:0.95rem;">Use as credenciais que criou no Supabase para aceder.</p>
-    <form class="form" id="loginForm">
-      <label for="loginEmail">Email</label>
-      <input type="email" id="loginEmail" placeholder="seu-email@exemplo.com" required>
-      <label for="loginSenha">Palavra-passe</label>
-      <input type="password" id="loginSenha" placeholder="••••••••" required>
-      <button type="submit" class="btn btn-vermelho">Entrar no Painel</button>
-      <p id="loginFeedback" class="feedback"></p>
-    </form>
-  </div>
+<section class="library-room" id="inicio">
 
-  <div id="painelBox" style="display:none;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
-      <div>
-        <h2 style="font-size:1.5rem;">Painel do Autor</h2>
-        <span class="painel-status logado">✅ Logado</span>
-      </div>
-      <button id="logoutBtn" class="btn-sair">🚪 Sair</button>
+    <div class="back-wall"></div>
+
+
+    <!-- ESTANTE ESQUERDA -->
+
+    <div class="bookcase left">
+
+        <div class="shelf-row">
+            <i class="fake-book b1 tall"></i>
+            <i class="fake-book b2"></i>
+            <i class="fake-book b3 tall"></i>
+            <i class="fake-book b4 short"></i>
+            <i class="fake-book b5"></i>
+            <i class="fake-book b6 tall"></i>
+        </div>
+
+        <div class="shelf-row">
+            <i class="fake-book b7"></i>
+            <i class="fake-book b8 tall"></i>
+            <i class="fake-book b3"></i>
+            <i class="fake-book b10 tall"></i>
+            <i class="fake-book b2 short"></i>
+        </div>
+
+        <div class="shelf-row">
+            <i class="fake-book b5 tall"></i>
+            <i class="fake-book b1"></i>
+            <i class="fake-book b9"></i>
+            <i class="fake-book b4 tall"></i>
+            <i class="fake-book b7"></i>
+        </div>
+
+        <div class="shelf-row">
+            <i class="fake-book b3"></i>
+            <i class="fake-book b6 tall"></i>
+            <i class="fake-book b10"></i>
+            <i class="fake-book b8"></i>
+            <i class="fake-book b1 tall"></i>
+        </div>
+
     </div>
 
-    <h3 style="font-size:1.15rem;margin-bottom:16px;">📚 Publicar Livro</h3>
-    <form class="form" id="livroForm">
-      <label for="lTitulo">Título *</label>
-      <input type="text" id="lTitulo" placeholder="Ex: O Silêncio das Palavras" required>
-      <label for="lSubtitulo">Subtítulo</label>
-      <input type="text" id="lSubtitulo" placeholder="Poesia e reflexão">
-      <label for="lAno">Ano de publicação</label>
-      <input type="text" id="lAno" placeholder="2026">
-      <label for="lGenero">Género</label>
-      <input type="text" id="lGenero" placeholder="Poesia, Ficção, Ensaio...">
-      <label for="lSinopse">Sinopse</label>
-      <textarea id="lSinopse" rows="3" placeholder="Breve descrição do livro..."></textarea>
-      <label for="lCapa">Link da capa (imagem, opcional)</label>
-      <input type="text" id="lCapa" placeholder="https://...jpg">
-      <label for="lPdf">Link do PDF *</label>
-      <input type="text" id="lPdf" placeholder="https://...pdf" required>
-      <button type="submit" class="btn btn-vermelho">📤 Publicar Livro</button>
-      <p id="livroFeedback" class="feedback"></p>
-    </form>
 
-    <h3 style="font-size:1.05rem;margin:36px 0 14px;">📖 Livros publicados</h3>
-    <div id="listaLivros">
-      <p style="font-size:.9rem;color:var(--cinza-suave);">A carregar...</p>
+
+    <!-- ESTANTE DIREITA -->
+
+    <div class="bookcase right">
+
+        <div class="shelf-row">
+            <i class="fake-book b5"></i>
+            <i class="fake-book b3 tall"></i>
+            <i class="fake-book b8"></i>
+            <i class="fake-book b1 tall"></i>
+            <i class="fake-book b10"></i>
+        </div>
+
+        <div class="shelf-row">
+            <i class="fake-book b2 tall"></i>
+            <i class="fake-book b4"></i>
+            <i class="fake-book b6 tall"></i>
+            <i class="fake-book b9"></i>
+            <i class="fake-book b7 short"></i>
+        </div>
+
+        <div class="shelf-row">
+            <i class="fake-book b10 tall"></i>
+            <i class="fake-book b1"></i>
+            <i class="fake-book b5"></i>
+            <i class="fake-book b3 tall"></i>
+            <i class="fake-book b8"></i>
+        </div>
+
+        <div class="shelf-row">
+            <i class="fake-book b6"></i>
+            <i class="fake-book b2 tall"></i>
+            <i class="fake-book b9"></i>
+            <i class="fake-book b4 tall"></i>
+            <i class="fake-book b7"></i>
+        </div>
+
     </div>
 
-    <h3 style="font-size:1.15rem;margin:52px 0 16px;">✍️ Publicar Artigo</h3>
-    <form class="form" id="artigoForm">
-      <label for="aTitulo">Título *</label>
-      <input type="text" id="aTitulo" placeholder="Ex: A Arte de Escrever" required>
-      <label for="aSubtitulo">Subtítulo</label>
-      <input type="text" id="aSubtitulo" placeholder="Reflexões sobre a escrita">
-      <label for="aResumo">Resumo</label>
-      <textarea id="aResumo" rows="3" placeholder="Breve resumo do artigo..."></textarea>
-      <label for="aPdf">Link do PDF *</label>
-      <input type="text" id="aPdf" placeholder="https://...pdf" required>
-      <button type="submit" class="btn btn-vermelho">📤 Publicar Artigo</button>
-      <p id="artigoFeedback" class="feedback"></p>
-    </form>
 
-    <h3 style="font-size:1.05rem;margin:36px 0 14px;">📄 Artigos publicados</h3>
-    <div id="listaArtigos">
-      <p style="font-size:.9rem;color:var(--cinza-suave);">A carregar...</p>
+
+    <!-- LÂMPADA -->
+
+    <div class="lamp"></div>
+
+    <div class="lamp-light"></div>
+
+
+
+    <!-- CENTRO -->
+
+    <div class="center">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                BIBLIOTECA DIGITAL
+            </div>
+
+            <h1 class="hero-title">
+                VIDA <span>&</span> ESCRITOS
+            </h1>
+
+            <p class="hero-description">
+
+                Entre páginas, memórias e pensamentos,
+                existe um lugar onde as palavras continuam
+                a viver.
+
+                <br>
+
+                Bem-vindo à biblioteca de
+                <strong>Renato Alizartino Manuel</strong>.
+
+            </p>
+
+            <a href="#biblioteca" class="enter-button">
+                ENTRAR NA BIBLIOTECA
+            </a>
+
+        </div>
+
     </div>
-  </div>
+
+
+
+    <!-- MESA -->
+
+    <div class="writer-desk"></div>
+
+
+    <!-- LIVRO SOBRE A MESA -->
+
+    <div
+        class="featured-book"
+        onclick="openBook('noite')"
+    >
+
+        <img
+            src="em-busca-da-noite-perfeita.jpg"
+            alt="Em Busca da Noite Perfeita"
+        >
+
+    </div>
+
 </section>
-</main>
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-box">
-    <button class="modal-fechar" id="modalFechar" aria-label="Fechar">&times;</button>
-    <div id="modalConteudo"></div>
-  </div>
-</div>
+
+
+
+<!-- =========================================================
+     COLEÇÃO
+========================================================= -->
+
+<section class="collection" id="biblioteca">
+
+    <div class="section-heading">
+
+        <small>
+            ACERVO DO AUTOR
+        </small>
+
+        <h2>
+            A Biblioteca
+        </h2>
+
+        <p>
+            Obras que nasceram da vida e encontraram
+            nas palavras uma segunda existência.
+        </p>
+
+    </div>
+
+
+    <div class="main-shelf">
+
+        <div class="books">
+
+
+            <!-- LIVRO 1 -->
+
+            <div
+                class="book-card"
+                onclick="openBook('noite')"
+            >
+
+                <img
+                    src="em-busca-da-noite-perfeita.jpg"
+                    alt="Em Busca da Noite Perfeita"
+                >
+
+                <div class="book-name">
+                    Em Busca da<br>
+                    Noite Perfeita
+                </div>
+
+            </div>
+
+
+
+            <!-- LIVRO 2 -->
+
+            <div
+                class="book-card"
+                onclick="openBook('olhares')"
+            >
+
+                <img
+                    src="entre-olhares-e-imagens.jpg"
+                    alt="Entre Olhares e Imagens"
+                >
+
+                <div class="book-name">
+                    Entre Olhares<br>
+                    e Imagens
+                </div>
+
+            </div>
+
+
+
+            <!-- LIVRO 3 -->
+
+            <div
+                class="book-card"
+                onclick="openBook('cartas')"
+            >
+
+                <img
+                    src="cartas-sem-escritos.jpg"
+                    alt="Cartas Sem Escritos"
+                >
+
+                <div class="book-name">
+                    Cartas<br>
+                    Sem Escritos
+                </div>
+
+            </div>
+
+
+
+            <!-- LIVRO 4 -->
+
+            <div
+                class="book-card"
+                onclick="openBook('flores')"
+            >
+
+                <img
+                    src="guerra-das-flores-capa.jpg"
+                    alt="A Guerra das Flores"
+                >
+
+                <div class="book-name">
+                    A Guerra das Flores<br>
+                    A Rosa Vermelha
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FRASE
+========================================================= -->
+
+<section class="quote-section">
+
+    <div class="quote">
+
+        <div class="quote-symbol">
+            "
+        </div>
+
+        <p>
+            Porque viver também é escrever.
+        </p>
+
+        <span>
+            VIDA & ESCRITOS
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ESCRITOS
+========================================================= -->
+
+<section class="writings" id="escritos">
+
+    <div class="section-heading">
+
+        <small>
+            PALAVRAS SOLTAS
+        </small>
+
+        <h2>
+            Escritos
+        </h2>
+
+        <p>
+            Nem toda história precisa de um livro.
+            Algumas cabem em poucas linhas.
+        </p>
+
+    </div>
+
+
+    <div class="writing-grid">
+
+
+        <article class="writing-card">
+
+            <div class="writing-icon">
+                ✒
+            </div>
+
+            <h3>
+                Poemas
+            </h3>
+
+            <p>
+                Versos sobre amor, perda, esperança,
+                existência e os pequenos detalhes
+                que fazem a vida valer a pena.
+            </p>
+
+        </article>
+
+
+        <article class="writing-card">
+
+            <div class="writing-icon">
+                ❝
+            </div>
+
+            <h3>
+                Frases
+            </h3>
+
+            <p>
+                Pensamentos curtos para aqueles momentos
+                em que uma frase consegue dizer aquilo
+                que uma página inteira não consegue.
+            </p>
+
+        </article>
+
+
+        <article class="writing-card">
+
+            <div class="writing-icon">
+                ☾
+            </div>
+
+            <h3>
+                Reflexões
+            </h3>
+
+            <p>
+                Textos sobre a vida, relações humanas,
+                sociedade, sentimentos e existência.
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     AUTOR
+========================================================= -->
+
+<section class="author" id="autor">
+
+    <div class="author-box">
+
+
+        <div class="author-emblem">
+
+            <span>
+                ✒
+            </span>
+
+        </div>
+
+
+        <div class="author-text">
+
+            <h2>
+                Renato Alizartino Manuel
+            </h2>
+
+            <p>
+                Escritor e poeta, apaixonado pela arte de
+                transformar experiências, pensamentos e
+                sentimentos em palavras.
+            </p>
+
+            <p>
+                O <strong>Vida & Escritos</strong> nasceu como
+                um espaço para reunir histórias, poemas,
+                reflexões e obras que fazem parte dessa
+                caminhada literária.
+            </p>
+
+            <p>
+                Aqui, cada livro é uma porta.
+                Cada texto, uma janela.
+                E cada leitor decide até onde quer entrar.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CONTACTO
+========================================================= -->
+
+<section class="contact" id="contacto">
+
+    <div class="section-heading">
+
+        <small>
+            PORTA ABERTA
+        </small>
+
+        <h2>
+            Entre em contacto
+        </h2>
+
+    </div>
+
+
+    <p>
+        Para conhecer as obras, conversar sobre literatura,
+        solicitar informações ou entrar em contacto com o autor.
+    </p>
+
+
+    <a
+        class="contact-button"
+        href="https://wa.me/258843833691"
+        target="_blank"
+    >
+        FALAR COM O AUTOR
+    </a>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
-  <div class="container">
-    <p class="footer-logo">Vida & Escritos</p>
-    <p style="color:var(--cinza-suave)">Poeta e Escritor</p>
-    <ul class="footer-nav">
-      <li><a href="#inicio">Início</a></li>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#biblioteca">Biblioteca</a></li>
-      <li><a href="#artigos">Artigos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    <ul class="footer-social">
-      <li><a href="#" target="_blank" rel="noopener">WhatsApp</a></li>
-      <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
-      <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
-    </ul>
-    <p class="copyright">© 2026 Renato Nhachengo — Todos os direitos reservados.</p>
-  </div>
+
+    <img
+        src="logo.png"
+        alt="Vida & Escritos"
+    >
+
+    <h3>
+        VIDA & ESCRITOS
+    </h3>
+
+    <p>
+        Porque viver também é escrever.
+    </p>
+
+    <p>
+        © 2026 Renato Alizartino Manuel
+    </p>
+
 </footer>
 
+
+
+<!-- =========================================================
+     MODAL DOS LIVROS
+========================================================= -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeBook()"
+        >
+            ×
+        </button>
+
+
+        <img
+            id="modalCover"
+            src=""
+            alt=""
+        >
+
+
+        <div class="modal-text">
+
+            <h2 id="modalTitle">
+                Título
+            </h2>
+
+            <p id="modalDescription">
+                Descrição
+            </p>
+
+
+            <a
+                id="modalPDF"
+                class="read-btn"
+                href="#"
+                target="_blank"
+            >
+                LER / BAIXAR LIVRO
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
 <script>
-// ===== NÚCLEO DO SITE =====
-const LIVROS_FIXOS = [
-  { id: 'cartas-sem-escritos', titulo: 'Cartas Sem Escritos', subtitulo: '', desc: 'Uma travessia pela memória e pelos sentimentos não ditos.', pdf: 'Cartas_Sem_Escritos.pdf', cor: 'linear-gradient(160deg,#5c2a2e,#3a1a1c)' },
-  { id: 'entre-olhares-e-imagens', titulo: 'Entre Olhares e Imagens', subtitulo: 'Lentes Noutros Horizontes — Vol. I', desc: 'Um olhar sobre o mundo através de imagens e palavras.', pdf: 'Entre_Olhares_e_Imagens.pdf', cor: 'linear-gradient(160deg,#2b3446,#151a24)' },
-  { id: 'guerra-das-flores', titulo: 'Guerra das Flores', subtitulo: 'A Rosa Vermelha', desc: 'Conflitos humanos narrados através da delicadeza da poesia.', pdf: 'A_Guerra_Das_Flores_A_Rosa_Vermelha.pdf', cor: 'linear-gradient(160deg,#2f3d31,#141d16)' },
-  { id: 'em-busca-da-noite-perfeita', titulo: 'Em Busca da Noite Perfeita', subtitulo: '', desc: 'Uma jornada noturna em busca de sentido e liberdade.', pdf: 'Em_Busca_Da_Noite_Perfeita.pdf', cor: 'linear-gradient(160deg,#2a2723,#0f0d0a)' },
-];
-const ARTIGOS_FIXOS = [
-  { id: 'teus-nomes-sao-tuas-raizes', titulo: 'Teus Nomes São Tuas Raízes', subtitulo: '', desc: 'Uma reflexão sobre a identidade e a originalidade dos nomes africanos.', pdf: 'Teus_Nomes_Sao_Tuas_Raizes.pdf' },
-  { id: 'o-grito-delas', titulo: 'O Grito Delas', subtitulo: 'com Amarildo Rungo', desc: 'Transcrição e interpretação literária de uma obra pictórica sobre o feminicídio.', pdf: 'O_Grito_Delas.pdf' },
-];
 
-function cartaoLivro(l){
-  const capaConteudo = l.capa
-    ? `<img src="${l.capa}" alt="${l.titulo}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit">`
-    : `<div class="capa-face" style="background:${l.cor}">
-        <span class="capa-titulo">${l.titulo}</span>
-        ${l.subtitulo ? `<span class="capa-sub">${l.subtitulo}</span>` : ''}
-        <span class="capa-marca">Vida & Escritos</span>
-      </div>`;
-  return `<article class="livro-card reveal visible">
-    <div class="capa" onclick='abrirModalLivro(${JSON.stringify(l)})'>
-      ${capaConteudo}
-    </div>
-    <h3>${l.titulo}</h3>
-    ${l.subtitulo ? `<p class="livro-meta">${l.subtitulo}</p>` : ''}
-    <p class="livro-desc">${l.desc}</p>
-    <div class="card-actions">
-      <a href="${l.pdf}" target="_blank" class="btn btn-outline" style="padding:10px 20px;font-size:.72rem">Ler</a>
-      <a href="${l.pdf}" download class="btn btn-vermelho" style="padding:10px 20px;font-size:.72rem">Baixar</a>
-    </div>
-  </article>`;
-}
-function cartaoArtigo(a){
-  return `<article class="artigo-card reveal visible">
-    <p class="data">Artigo</p>
-    <h3 style="cursor:pointer" onclick='abrirModalArtigo(${JSON.stringify(a)})'>${a.titulo}</h3>
-    ${a.subtitulo ? `<p class="tag">${a.subtitulo}</p>` : ''}
-    <p>${a.desc}</p>
-    <a href="${a.pdf}" target="_blank" class="btn btn-outline" style="padding:10px 20px;font-size:.72rem">Ler online</a>
-  </article>`;
-}
+/* =========================================================
+   LIVROS
+========================================================= */
 
-window.abrirModalLivro = function(l){
-  document.getElementById('modalConteudo').innerHTML = `
-    <span class="eyebrow">Livro</span>
-    <h2 style="margin-bottom:6px">${l.titulo}</h2>
-    ${l.subtitulo ? `<p class="livro-meta" style="margin-bottom:18px">${l.subtitulo}</p>` : ''}
-    <p style="color:var(--cinza-suave);margin-bottom:26px">${l.desc}</p>
-    <div class="card-actions" style="justify-content:flex-start">
-      <a href="${l.pdf}" target="_blank" class="btn btn-outline">Ler online</a>
-      <a href="${l.pdf}" download class="btn btn-vermelho">Baixar PDF</a>
-    </div>
-    <div class="partilha">
-      <a href="https://wa.me/?text=${encodeURIComponent(l.titulo + ' — Vida & Escritos')}" target="_blank">Partilhar no WhatsApp</a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}" target="_blank">Partilhar no Facebook</a>
-    </div>`;
-  document.getElementById('modalOverlay').classList.add('aberto');
-};
-window.abrirModalArtigo = function(a){
-  document.getElementById('modalConteudo').innerHTML = `
-    <span class="eyebrow">Artigo</span>
-    <h2 style="margin-bottom:6px">${a.titulo}</h2>
-    ${a.subtitulo ? `<p class="livro-meta" style="margin-bottom:18px">${a.subtitulo}</p>` : ''}
-    <p style="color:var(--cinza-suave);margin-bottom:26px">${a.desc}</p>
-    <a href="${a.pdf}" target="_blank" class="btn btn-vermelho">Ler artigo completo</a>
-    <div class="partilha">
-      <a href="https://wa.me/?text=${encodeURIComponent(a.titulo + ' — Vida & Escritos')}" target="_blank">Partilhar no WhatsApp</a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}" target="_blank">Partilhar no Facebook</a>
-    </div>`;
-  document.getElementById('modalOverlay').classList.add('aberto');
-};
+const books = {
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('livrosFixos').innerHTML = LIVROS_FIXOS.map(cartaoLivro).join('');
-  document.getElementById('artigosFixos').innerHTML = ARTIGOS_FIXOS.map(cartaoArtigo).join('');
+    noite: {
 
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+        title: "Em Busca da Noite Perfeita",
 
-  const themeToggle = document.getElementById('themeToggle');
-  if (localStorage.getItem('tema') === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeToggle.textContent='☀️'; }
-  themeToggle.addEventListener('click', () => {
-    if (document.documentElement.getAttribute('data-theme') === 'dark') {
-      document.documentElement.removeAttribute('data-theme'); localStorage.setItem('tema','light'); themeToggle.textContent='🌙';
-    } else {
-      document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('tema','dark'); themeToggle.textContent='☀️';
+        image: "em-busca-da-noite-perfeita.jpg",
+
+        pdf: "em-busca-da-noite-perfeita.pdf",
+
+        description:
+        "Uma obra sobre sentimentos, conflitos interiores, procura e experiências humanas. Uma viagem em busca de algo que talvez nunca tenha sido apenas uma noite."
+
+    },
+
+
+    olhares: {
+
+        title: "Entre Olhares e Imagens",
+
+        image: "entre-olhares-e-imagens.jpg",
+
+        pdf: "entre-olhares-e-imagens.pdf",
+
+        description:
+        "Lentes Noutros Horizontes — Volume 1. Uma obra dedicada ao olhar, à imagem e às diferentes formas de perceber e interpretar o mundo."
+
+    },
+
+
+    cartas: {
+
+        title: "Cartas Sem Escritos",
+
+        image: "cartas-sem-escritos.jpg",
+
+        pdf: "cartas-sem-escritos.pdf",
+
+        description:
+        "Uma obra construída em torno das palavras que ficaram por dizer, dos sentimentos que permanecem e das histórias que continuam mesmo quando não são escritas."
+
+    },
+
+
+    flores: {
+
+        title: "A Guerra das Flores — A Rosa Vermelha",
+
+        image: "guerra-das-flores-capa.jpg",
+
+        pdf: "guerra-das-flores.pdf",
+
+        description:
+        "Uma história marcada por amor, conflito, sentimentos e esperança. Entre as pétalas de uma rosa existe uma guerra que precisa ser contada."
+
     }
-  });
 
-  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible'); io.unobserve(e.target);} }), {threshold:.1});
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  }
+};
 
-  document.getElementById('modalFechar').addEventListener('click', () => document.getElementById('modalOverlay').classList.remove('aberto'));
-  document.getElementById('modalOverlay').addEventListener('click', (e) => { if(e.target.id==='modalOverlay') e.currentTarget.classList.remove('aberto'); });
 
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const nome = document.getElementById('nome').value.trim();
-    const fb = document.getElementById('formFeedback');
-    if (!nome) { fb.textContent = 'Por favor, preencha todos os campos.'; return; }
-    fb.style.color = 'var(--dourado-suave)';
-    fb.textContent = `Obrigado, ${nome}! A sua mensagem foi registada.`;
-    form.reset();
-  });
+/* =========================================================
+   ABRIR LIVRO
+========================================================= */
 
-  document.getElementById('newsletterForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    document.getElementById('newsletterFeedback').textContent = 'Obrigado por subscrever!';
-    e.target.reset();
-  });
+function openBook(id) {
+
+    const book = books[id];
+
+    document.getElementById("modalCover").src =
+        book.image;
+
+    document.getElementById("modalCover").alt =
+        book.title;
+
+    document.getElementById("modalTitle").textContent =
+        book.title;
+
+    document.getElementById("modalDescription").textContent =
+        book.description;
+
+    document.getElementById("modalPDF").href =
+        book.pdf;
+
+    document.getElementById("modal").classList.add("active");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+/* =========================================================
+   FECHAR LIVRO
+========================================================= */
+
+function closeBook() {
+
+    document
+        .getElementById("modal")
+        .classList.remove("active");
+
+    document.body.style.overflow = "auto";
+}
+
+
+/* =========================================================
+   CLICAR FORA
+========================================================= */
+
+document
+    .getElementById("modal")
+    .addEventListener("click", function(e) {
+
+        if (e.target === this) {
+
+            closeBook();
+
+        }
+
+    });
+
+
+/* =========================================================
+   ESC
+========================================================= */
+
+document.addEventListener("keydown", function(e) {
+
+    if (e.key === "Escape") {
+
+        closeBook();
+
+    }
+
 });
-</script>
 
-<script type="module">
-// ===== PAINEL ADMINISTRATIVO - SUPABASE =====
-// 🔒 Credenciais do seu projeto Supabase
-const SUPABASE_URL = 'https://uxvtewwealwtntnbyjyh.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_l79iQtPWsFQG2GKygQ7-dg_Wy2xQot6';
 
-try {
-  const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
-  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+/* =========================================================
+   CRIAR POEIRA / PARTÍCULAS
+========================================================= */
 
-  function gerarId(t) {
-    return t.toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '') + '-' + Date.now().toString(36);
-  }
+const dust = document.getElementById("dust");
 
-  async function carregarListasAdmin() {
-    const listaL = document.getElementById('listaLivros');
-    const listaA = document.getElementById('listaArtigos');
-    if (!listaL || !listaA) return;
+for (let i = 0; i < 45; i++) {
 
-    const { data: livros, error: eL } = await supabase.from('livros').select('*').order('created_at', { ascending: false });
-    if (eL) console.error('Erro ao carregar livros:', eL);
-    
-    listaL.innerHTML = !livros || livros.length === 0
-      ? '<p style="font-size:.9rem;color:var(--cinza-suave);">📭 Ainda não publicaste nenhum livro.</p>'
-      : livros.map(l => `
-        <div class="item-lista">
-          <span style="font-size:.9rem;">📖 ${l.titulo}${l.ano ? ' · ' + l.ano : ''}</span>
-          <button class="btn-eliminar" onclick="eliminarLivro('${l.id}')">🗑️ Eliminar</button>
-        </div>
-      `).join('');
+    const particle =
+        document.createElement("span");
 
-    const { data: artigos, error: eA } = await supabase.from('artigos').select('*').order('created_at', { ascending: false });
-    if (eA) console.error('Erro ao carregar artigos:', eA);
-    
-    listaA.innerHTML = !artigos || artigos.length === 0
-      ? '<p style="font-size:.9rem;color:var(--cinza-suave);">📭 Ainda não publicaste nenhum artigo.</p>'
-      : artigos.map(a => `
-        <div class="item-lista">
-          <span style="font-size:.9rem;">📄 ${a.titulo}</span>
-          <button class="btn-eliminar" onclick="eliminarArtigo('${a.id}')">🗑️ Eliminar</button>
-        </div>
-      `).join('');
-  }
+    particle.className = "dust";
 
-  window.eliminarLivro = async function(id) {
-    if (!confirm('⚠️ Eliminar este livro definitivamente?')) return;
-    const { error } = await supabase.from('livros').delete().eq('id', id);
-    if (error) { alert('❌ Erro ao eliminar. Confirma que estás autenticado.'); console.error(error); return; }
-    carregarListasAdmin();
-  };
+    particle.style.left =
+        Math.random() * 100 + "%";
 
-  window.eliminarArtigo = async function(id) {
-    if (!confirm('⚠️ Eliminar este artigo definitivamente?')) return;
-    const { error } = await supabase.from('artigos').delete().eq('id', id);
-    if (error) { alert('❌ Erro ao eliminar. Confirma que estás autenticado.'); console.error(error); return; }
-    carregarListasAdmin();
-  };
+    particle.style.top =
+        Math.random() * 100 + "%";
 
-  function configurarAdmin() {
-    const loginBox = document.getElementById('loginBox');
-    const painelBox = document.getElementById('painelBox');
-    const loginForm = document.getElementById('loginForm');
-    const loginFeedback = document.getElementById('loginFeedback');
-    const logoutBtn = document.getElementById('logoutBtn');
+    particle.style.animationDuration =
+        (8 + Math.random() * 14) + "s";
 
-    async function verificarEstado() {
-      const { data: { session } } = await supabase.auth.getSession();
-      loginBox.style.display = session ? 'none' : 'block';
-      painelBox.style.display = session ? 'block' : 'none';
-      if (session) {
-        carregarListasAdmin();
-      }
-    }
-    verificarEstado();
+    particle.style.animationDelay =
+        Math.random() * 10 + "s";
 
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('loginEmail').value.trim();
-      const senha = document.getElementById('loginSenha').value;
-      
-      if (!email || !senha) {
-        loginFeedback.textContent = '⚠️ Preencha email e palavra-passe.';
-        return;
-      }
+    particle.style.opacity =
+        Math.random();
 
-      loginFeedback.textContent = '⏳ A tentar entrar...';
-      loginFeedback.style.color = 'var(--dourado-suave)';
-
-      const { data, error } = await supabase.auth.signInWithPassword({ 
-        email, 
-        password: senha 
-      });
-
-      if (error) {
-        loginFeedback.textContent = '❌ ' + error.message;
-        loginFeedback.style.color = 'var(--vermelho-poetico)';
-        console.error('Erro de login:', error);
-        return;
-      }
-
-      loginFeedback.textContent = '✅ Login feito com sucesso!';
-      loginFeedback.style.color = 'var(--dourado-suave)';
-      setTimeout(() => {
-        loginFeedback.textContent = '';
-        verificarEstado();
-      }, 1000);
-    });
-
-    logoutBtn.addEventListener('click', async () => {
-      await supabase.auth.signOut();
-      verificarEstado();
-    });
-
-    document.getElementById('livroForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const titulo = document.getElementById('lTitulo').value.trim();
-      const pdf = document.getElementById('lPdf').value.trim();
-      const fb = document.getElementById('livroFeedback');
-      if (!titulo || !pdf) { fb.textContent = '⚠️ Título e link do PDF são obrigatórios.'; return; }
-      
-      const { error } = await supabase.from('livros').insert([{
-        id: gerarId(titulo),
-        titulo,
-        subtitulo: document.getElementById('lSubtitulo').value.trim(),
-        ano: document.getElementById('lAno').value.trim(),
-        genero: document.getElementById('lGenero').value.trim(),
-        sinopse: document.getElementById('lSinopse').value.trim(),
-        capaurl: document.getElementById('lCapa').value.trim(),
-        pdfurl: pdf
-      }]);
-      
-      if (error) { 
-        fb.textContent = '❌ Erro ao publicar: ' + error.message;
-        fb.className = 'feedback';
-        console.error(error); 
-        return; 
-      }
-      fb.className = 'feedback feedback-sucesso';
-      fb.textContent = `✅ "${titulo}" foi publicado com sucesso!`;
-      e.target.reset();
-      carregarListasAdmin();
-    });
-
-    document.getElementById('artigoForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const titulo = document.getElementById('aTitulo').value.trim();
-      const pdf = document.getElementById('aPdf').value.trim();
-      const fb = document.getElementById('artigoFeedback');
-      if (!titulo || !pdf) { fb.textContent = '⚠️ Título e link do PDF são obrigatórios.'; return; }
-      
-      const { error } = await supabase.from('artigos').insert([{
-        id: gerarId(titulo),
-        titulo,
-        subtitulo: document.getElementById('aSubtitulo').value.trim(),
-        resumo: document.getElementById('aResumo').value.trim(),
-        pdfurl: pdf
-      }]);
-      
-      if (error) { 
-        fb.textContent = '❌ Erro ao publicar: ' + error.message;
-        fb.className = 'feedback';
-        console.error(error); 
-        return; 
-      }
-      fb.className = 'feedback feedback-sucesso';
-      fb.textContent = `✅ "${titulo}" foi publicado com sucesso!`;
-      e.target.reset();
-      carregarListasAdmin();
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', configurarAdmin);
-
-} catch (err) {
-  console.error('Erro ao ligar ao Supabase:', err);
-  document.addEventListener('DOMContentLoaded', () => {
-    const listaL = document.getElementById('listaLivros');
-    const listaA = document.getElementById('listaArtigos');
-    if (listaL) listaL.innerHTML = '<p style="font-size:.9rem;color:var(--cinza-suave);">⚠️ Não foi possível ligar à base de dados.</p>';
-    if (listaA) listaA.innerHTML = '<p style="font-size:.9rem;color:var(--cinza-suave);">⚠️ Não foi possível ligar à base de dados.</p>';
-  });
+    dust.appendChild(particle);
 }
+
 </script>
 
 </body>
