@@ -283,6 +283,51 @@ body.light-mode footer{ background:var(--paper); }
   .menu-toggle{ display:flex; }
 }
 
+/* ============ COMENTÁRIOS ============ */
+
+.comments-section{ padding:0 0 110px; }
+.comments-wrap{ display:grid; grid-template-columns:1fr 1.2fr; gap:48px; margin-top:50px; align-items:start; }
+@media(max-width:900px){ .comments-wrap{ grid-template-columns:1fr; gap:36px; } }
+
+.comment-form{
+  display:flex; flex-direction:column; gap:14px; padding:30px;
+  border:1px solid var(--line);
+  background:linear-gradient(160deg, rgba(201,169,110,.06), transparent);
+}
+.comment-form label{ font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent); }
+.comment-form input,
+.comment-form select,
+.comment-form textarea{
+  width:100%; padding:12px 14px; font-family:var(--body); font-size:15px;
+  color:#f1e9d8; background:rgba(255,255,255,.04);
+  border:1px solid var(--line); border-radius:2px; outline:none; transition:.3s;
+}
+.comment-form textarea{ min-height:130px; resize:vertical; }
+.comment-form input:focus,
+.comment-form select:focus,
+.comment-form textarea:focus{ border-color:var(--accent); }
+.comment-form option{ color:#1a1a1a; }
+body.light-mode .comment-form input,
+body.light-mode .comment-form select,
+body.light-mode .comment-form textarea{ color:var(--ink); background:#fff; }
+.comment-form .cta-button{ align-self:flex-start; margin-top:6px; }
+.comment-form .cta-button[disabled]{ opacity:.6; cursor:wait; }
+.c-hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
+.c-status{ font-size:14px; color:var(--muted); min-height:20px; }
+.c-status.ok{ color:var(--accent); }
+.c-status.err{ color:var(--accent-2); }
+
+.comments-list{ display:flex; flex-direction:column; gap:18px; }
+.comment-item{ padding:20px 22px; border:1px solid var(--line); border-left:2px solid var(--accent); }
+.comment-meta{ display:flex; flex-wrap:wrap; align-items:baseline; gap:10px; margin-bottom:8px; }
+.comment-meta strong{ font-family:var(--title); font-size:16px; color:#f5eede; }
+body.light-mode .comment-meta strong{ color:var(--ink); }
+.comment-meta .c-book{ font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); }
+.comment-meta .c-date{ font-size:12px; color:var(--muted); margin-left:auto; }
+.comment-item p{ font-family:var(--quote); font-style:italic; font-size:18px; line-height:1.55; color:#e7e1d4; white-space:pre-line; }
+body.light-mode .comment-item p{ color:var(--ink-2); }
+.comments-empty{ color:var(--muted); font-size:15px; }
+
 </style>
 </head>
 <body>
@@ -515,6 +560,47 @@ body.light-mode footer{ background:var(--paper); }
   </div>
 </section>
 
+<!-- ============ COMENTÁRIOS DOS LEITORES ============ -->
+<section class="comments-section" id="comentarios">
+  <div class="container">
+    <div class="eyebrow">Leitores</div>
+    <h2 style="font-size:36px;color:#f5eede;">Deixa o teu comentário</h2>
+    <p style="max-width:520px;color:var(--muted);margin-top:14px;">Leste ou baixaste uma das obras? Partilha a tua opinião. Os comentários aparecem depois de aprovados pelo autor.</p>
+
+    <div class="comments-wrap">
+
+      <div class="comment-form">
+        <label for="c-nome">O teu nome</label>
+        <input id="c-nome" type="text" maxlength="60" placeholder="Como te chamas?" autocomplete="name">
+
+        <label for="c-livro">Sobre qual obra?</label>
+        <select id="c-livro">
+          <option value="Geral">Geral / Sobre o site</option>
+          <option value="Em Busca da Noite Perfeita">Em Busca da Noite Perfeita</option>
+          <option value="Entre Olhares e Imagens">Entre Olhares e Imagens</option>
+          <option value="Cartas Sem Escritos">Cartas Sem Escritos</option>
+          <option value="A Guerra das Flores">A Guerra das Flores</option>
+          <option value="Teus Nomes São Tuas Raízes">Teus Nomes São Tuas Raízes</option>
+          <option value="O Grito Delas">O Grito Delas</option>
+        </select>
+
+        <label for="c-msg">O teu comentário</label>
+        <textarea id="c-msg" maxlength="600" placeholder="O que sentiste ao ler?"></textarea>
+
+        <input class="c-hp" id="c-site" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <button class="cta-button" id="c-btn" type="button" onclick="enviarComentario()">Enviar comentário</button>
+        <div class="c-status" id="c-status" role="status"></div>
+      </div>
+
+      <div class="comments-list" id="lista-comentarios">
+        <p class="comments-empty">A carregar comentários…</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ============ CONTACTO ============ -->
 <section class="contact-section" id="contacto">
   <div class="eyebrow">Porta Aberta</div>
@@ -641,6 +727,119 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 revealEls.forEach(el => observer.observe(el));
 
+</script>
+
+<!-- ============ COMENTÁRIOS: LIGAÇÃO AO SUPABASE ============ -->
+<script>
+/* Cola aqui o URL e a chave "anon public" do teu projeto Supabase
+   (Supabase > Project Settings > API). */
+const COMENT_URL = "https://uxvtewwealwtntnbyjyh.supabase.co";
+const COMENT_KEY = "sb_publishable_l79iQtPWsFQG2GKygQ7-dg_Wy2xQot6";
+
+function comentConfigurado(){
+  return COMENT_URL.startsWith("http") && COMENT_KEY.length > 40;
+}
+
+function comentHeaders(extra){
+  const h = { apikey: COMENT_KEY };
+  if (COMENT_KEY.startsWith("eyJ")) h.Authorization = "Bearer " + COMENT_KEY;
+  return Object.assign(h, extra || {});
+}
+
+function comentStatus(msg, tipo){
+  const el = document.getElementById("c-status");
+  el.textContent = msg;
+  el.className = "c-status" + (tipo ? " " + tipo : "");
+}
+
+async function carregarComentarios(){
+  const lista = document.getElementById("lista-comentarios");
+  if (!comentConfigurado()){
+    lista.innerHTML = "";
+    const p = document.createElement("p");
+    p.className = "comments-empty";
+    p.textContent = "Comentários em breve.";
+    lista.appendChild(p);
+    return;
+  }
+  try{
+    const r = await fetch(
+      COMENT_URL + "/rest/v1/comentarios?select=nome,mensagem,livro,created_at&order=created_at.desc&limit=30",
+      { headers: comentHeaders() }
+    );
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const dados = await r.json();
+    lista.innerHTML = "";
+    if (!dados.length){
+      const p = document.createElement("p");
+      p.className = "comments-empty";
+      p.textContent = "Ainda não há comentários. Sê o primeiro a deixar a tua opinião.";
+      lista.appendChild(p);
+      return;
+    }
+    dados.forEach(c => {
+      const item = document.createElement("div");
+      item.className = "comment-item";
+
+      const meta = document.createElement("div");
+      meta.className = "comment-meta";
+      const nome = document.createElement("strong");
+      nome.textContent = c.nome;
+      const livro = document.createElement("span");
+      livro.className = "c-book";
+      livro.textContent = c.livro || "Geral";
+      const data = document.createElement("span");
+      data.className = "c-date";
+      data.textContent = new Date(c.created_at).toLocaleDateString("pt-PT");
+      meta.append(nome, livro, data);
+
+      const msg = document.createElement("p");
+      msg.textContent = c.mensagem;
+
+      item.append(meta, msg);
+      lista.appendChild(item);
+    });
+  }catch(e){
+    lista.innerHTML = "";
+    const p = document.createElement("p");
+    p.className = "comments-empty";
+    p.textContent = "Não foi possível carregar os comentários agora.";
+    lista.appendChild(p);
+  }
+}
+
+async function enviarComentario(){
+  if (document.getElementById("c-site").value) return; /* anti-spam */
+  const nome = document.getElementById("c-nome").value.trim();
+  const livro = document.getElementById("c-livro").value;
+  const mensagem = document.getElementById("c-msg").value.trim();
+  const btn = document.getElementById("c-btn");
+
+  if (!nome || !mensagem){ comentStatus("Preenche o teu nome e o comentário.", "err"); return; }
+  if (!comentConfigurado()){ comentStatus("Os comentários ainda não estão ativos.", "err"); return; }
+
+  btn.disabled = true;
+  comentStatus("A enviar…");
+  try{
+    const r = await fetch(COMENT_URL + "/rest/v1/comentarios", {
+      method: "POST",
+      headers: comentHeaders({
+        "Content-Type": "application/json",
+        Prefer: "return=minimal"
+      }),
+      body: JSON.stringify({ nome, livro, mensagem })
+    });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    document.getElementById("c-nome").value = "";
+    document.getElementById("c-msg").value = "";
+    comentStatus("Obrigado! O teu comentário aparece depois de aprovado.", "ok");
+  }catch(e){
+    comentStatus("Não foi possível enviar. Tenta novamente.", "err");
+  }
+  btn.disabled = false;
+}
+
+carregarComentarios();
 </script>
 
 </body>
