@@ -642,7 +642,7 @@ body.light-mode .comment-item p{ color:var(--ink-2); }
     <div class="modal-text">
       <h2 id="modalTitle">Título</h2>
       <p id="modalDescription">Descrição</p>
-      <a id="modalPDF" class="cta-button" href="#" target="_blank">Ler / Baixar Livro</a>
+      <a id="modalPDF" class="cta-button" href="#" target="_blank" onclick="registrarEstatistica('livro_' + livroAtualId + '_pdf')">Ler / Baixar Livro</a>
     </div>
   </div>
 </div>
@@ -688,8 +688,11 @@ const books = {
   }
 };
 
+let livroAtualId = null;
+
 function openBook(id){
   const book = books[id];
+  livroAtualId = id;
   document.getElementById("modalCover").src = book.image;
   document.getElementById("modalCover").alt = book.title;
   document.getElementById("modalTitle").textContent = book.title;
@@ -697,6 +700,7 @@ function openBook(id){
   document.getElementById("modalPDF").href = book.pdf;
   document.getElementById("modal").classList.add("active");
   document.body.style.overflow = "hidden";
+  registrarEstatistica("livro_" + id + "_aberturas");
 }
 
 function closeBook(){
@@ -840,6 +844,29 @@ async function enviarComentario(){
 }
 
 carregarComentarios();
+</script>
+
+<!-- ============ CONTADOR DE VISITAS E ACESSOS AOS LIVROS ============ -->
+<script>
+/* Regista um evento (visita ao site, abertura de um livro, ou clique em "Ler/Baixar")
+   somando +1 na tabela "estatisticas" do Supabase, através da função incrementar_estatistica.
+   Falha em silêncio para nunca incomodar o visitante nem travar o site. */
+async function registrarEstatistica(chave){
+  if (!comentConfigurado()) return;
+  try{
+    await fetch(COMENT_URL + "/rest/v1/rpc/incrementar_estatistica", {
+      method: "POST",
+      headers: comentHeaders({ "Content-Type": "application/json" }),
+      body: JSON.stringify({ p_chave: chave })
+    });
+  }catch(e){ /* silencioso */ }
+}
+
+/* Conta uma visita por sessão de navegador (não a cada página vista) */
+if (!sessionStorage.getItem("visita_ja_contada")){
+  registrarEstatistica("visita_site");
+  sessionStorage.setItem("visita_ja_contada", "1");
+}
 </script>
 
 </body>
